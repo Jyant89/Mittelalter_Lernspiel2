@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reise ins Mittelalter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Grenze+Gotisch:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lapis:#1D2A63;--lapis-2:#2B3C85;--lapis-deep:#121A40;--lapis-tint:#DDE2F4;
+  --vellum:#F6EFDD;--vellum-2:#EDE3C9;--vellum-3:#E3D6B6;--edge:#CBB98E;--paper:#FFFBF1;
+  --ink:#2A2019;--ink-2:#5A4B3B;
+  --rubric:#AF2519;--gold:#B8892A;--gold-hi:#E8C664;
+  --ok:#2A6E3F;--ok-bg:#DAEAD2;--bad:#A1221A;--bad-bg:#F7DAD3;
+  --display:"Grenze Gotisch","Palatino Linotype",Palatino,Georgia,serif;
+  --body:"Atkinson Hyperlegible",Verdana,"Segoe UI",system-ui,sans-serif;
+  --fs:18px;
+  color-scheme:light;
+}
+html.big{--fs:21px}
+@media (max-width:480px){:root{--fs:17px}html.big{--fs:20px}}
+*,*::before,*::after{box-sizing:border-box}
+html{font-size:var(--fs);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background-color:var(--lapis);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z' fill='none' stroke='%23ffffff' stroke-opacity='.07'/%3E%3Ccircle cx='20' cy='20' r='1.8' fill='%23E8C664' fill-opacity='.45'/%3E%3Cg fill='%23E8C664' fill-opacity='.25'%3E%3Ccircle r='1.3'/%3E%3Ccircle cx='40' r='1.3'/%3E%3Ccircle cy='40' r='1.3'/%3E%3Ccircle cx='40' cy='40' r='1.3'/%3E%3C/g%3E%3C/svg%3E");color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rubric);outline-offset:2px}
+.bar :focus-visible,.band :focus-visible{outline-color:var(--gold-hi)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+svg{display:block}
+
+/* Kopfleiste */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--lapis-deep);border-bottom:3px double var(--gold);box-shadow:0 2px 12px rgba(0,0,0,.35)}
+.bar-in{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:8px 16px}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;color:var(--gold-hi);cursor:pointer;padding:4px;min-height:44px;margin-right:auto;min-width:0;border-radius:8px}
+.brand .full{font-family:var(--display);font-size:1.6rem;font-weight:700;line-height:1;white-space:nowrap}
+.stats{display:flex;gap:6px}
+.stat{display:inline-flex;align-items:center;gap:6px;color:var(--vellum);font-weight:700;font-variant-numeric:tabular-nums;background:rgba(255,255,255,.07);border:1px solid rgba(232,198,100,.35);border-radius:999px;padding:3px 10px 3px 5px;min-height:36px}
+.tools{display:flex;gap:6px}
+.ibtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:transparent;color:var(--vellum);border:1px solid rgba(246,239,221,.28);border-radius:8px;min-height:44px;min-width:44px;padding:6px 10px;cursor:pointer;font-size:.86rem;font-weight:700}
+.ibtn:hover{background:rgba(255,255,255,.09)}
+@media (max-width:860px){.brand .full{display:none}}
+@media (max-width:640px){.ibtn .lbl{display:none}.ibtn{padding:6px}.stat{padding:2px 8px 2px 4px;gap:4px}}
+
+/* Grundlayout */
+.wrap{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:18px 56px;display:grid;gap:16px}
+.sheet{position:relative;background:var(--vellum);color:var(--ink);border-radius:6px;padding:clamp(22px,4vw,38px);box-shadow:inset 0 0 0 6px var(--vellum),inset 0 0 0 7px rgba(175,37,25,.5),inset 0 0 0 10px var(--vellum),inset 0 0 0 11px rgba(184,137,42,.55),0 10px 30px rgba(0,0,0,.35);display:grid;gap:14px;min-width:0}
+h1,h2,h3{margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1.05;color:var(--rubric)}
+p{margin:0}
+.eyebrow{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.prose{display:grid;gap:10px;max-width:66ch}
+.prose p{font-size:1.06rem}
+.initial::first-letter{font-family:var(--display);float:left;font-size:3.3em;line-height:.82;padding:6px 8px 4px;margin:4px 10px 0 0;background:var(--lapis);color:var(--gold-hi);border-radius:3px;box-shadow:inset 0 0 0 2px var(--gold)}
+.term{background:none;border:0;padding:0;margin:0;color:var(--rubric);font-weight:700;border-bottom:2px dotted currentColor;cursor:pointer;line-height:1.2}
+.term:hover{background:rgba(175,37,25,.08)}
+.small{font-size:.88rem;color:var(--ink-2)}
+
+/* Schaltflächen */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:10px 18px;border-radius:8px;border:2px solid;font-weight:700;font-size:1rem;cursor:pointer;text-align:center;line-height:1.2}
+.btn svg{flex:none}
+.btn.primary{background:var(--lapis);color:var(--vellum);border-color:var(--lapis-deep)}
+.btn.primary:hover{background:var(--lapis-2)}
+.btn.gold{background:var(--gold-hi);color:var(--ink);border-color:var(--gold);box-shadow:0 3px 0 var(--gold)}
+.btn.gold:hover{background:#F0D27C}
+.btn.ghost{background:transparent;color:var(--lapis);border-color:rgba(29,42,99,.45)}
+.btn.ghost:hover{background:rgba(29,42,99,.07)}
+.btn.big{font-size:1.12rem;min-height:56px;padding:12px 26px}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.foot .push{margin-left:auto}
+.speak{display:inline-flex;align-items:center;gap:6px;background:var(--vellum-2);border:1px solid var(--edge);border-radius:999px;padding:4px 12px 4px 8px;min-height:36px;cursor:pointer;font-size:.85rem;font-weight:700;color:var(--lapis)}
+.speak:hover{background:var(--vellum-3)}
+.linkbtn{background:none;border:0;padding:6px 0;color:var(--lapis);text-decoration:underline;cursor:pointer;font-weight:700;justify-self:start}
+
+/* Start */
+.start-hero{display:grid;gap:4px}
+.kicker{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.title{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,8vw,4.4rem);line-height:.95;color:var(--lapis)}
+.title em{font-style:normal;color:var(--rubric)}
+.h-sm{font-family:var(--body);font-size:1.15rem;color:var(--ink);font-weight:700}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.lvl{display:grid;gap:4px;text-align:left;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:14px 16px;cursor:pointer;align-content:start}
+.lvl b{font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--lapis)}
+.lvl span.d{font-size:.92rem;color:var(--ink-2)}
+.lvl:hover{border-color:var(--lapis-2)}
+.lvl.on{border-color:var(--lapis);background:var(--lapis-tint);box-shadow:0 0 0 3px rgba(43,60,133,.25)}
+.stars{display:inline-flex;gap:2px;color:var(--gold)}
+.stars svg{width:18px;height:18px}
+
+/* Station: Band */
+.band{background:var(--st);color:#fff;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.35);overflow:hidden}
+.band-in{display:flex;align-items:center;gap:14px;padding:14px 18px}
+.band-t{flex:1;min-width:0}
+.band h1{font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1}
+.band-sub{font-size:.95rem;opacity:.95}
+.eyebrow.light{color:rgba(255,255,255,.82)}
+.band-coins{position:relative;display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.22);border-radius:999px;padding:4px 12px 4px 6px;font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem}
+.pop{position:absolute;right:4px;top:-6px;font-weight:700;color:var(--gold-hi);animation:pop 1.3s ease-out forwards;pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+@keyframes pop{0%{opacity:0;transform:translateY(6px) scale(.8)}20%{opacity:1;transform:translateY(-6px) scale(1.15)}100%{opacity:0;transform:translateY(-30px)}}
+.steps{list-style:none;margin:0;padding:0 18px 12px;display:flex;gap:6px;flex-wrap:wrap;counter-reset:s}
+.steps li{counter-increment:s;font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:999px;background:rgba(0,0,0,.2);color:rgba(255,255,255,.75)}
+.steps li::before{content:counter(s) ". "}
+.steps li.now{background:var(--vellum);color:var(--ink)}
+.steps li.done{background:rgba(255,255,255,.28);color:#fff}
+.steps li.done::before{content:"✓ "}
+
+/* Führer-Sprechblase */
+.guide{display:flex;gap:14px;align-items:flex-start}
+.guide .av{flex:none;width:76px;height:76px;border-radius:50%;box-shadow:0 0 0 3px var(--gold-hi),0 4px 10px rgba(0,0,0,.35);overflow:hidden;background:var(--vellum-2)}
+.bubble{position:relative;background:var(--paper);border:2px solid var(--edge);border-radius:12px;padding:12px 16px;display:grid;gap:6px;flex:1;min-width:0}
+.bubble::before{content:"";position:absolute;left:-10px;top:24px;width:16px;height:16px;background:var(--paper);border-left:2px solid var(--edge);border-bottom:2px solid var(--edge);transform:rotate(45deg)}
+.bubble b{color:var(--lapis)}
+.guide-wrap{background:var(--vellum-2);border-radius:6px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+
+/* Karten & Aufgaben */
+.card-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.card-head .speak{margin-left:auto}
+.tag{font-size:.74rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--vellum-3);color:var(--ink);letter-spacing:.03em}
+.tag.denk{background:var(--lapis);color:var(--gold-hi)}
+.cardnav{display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.dots{display:flex;gap:8px}
+.dots i{width:12px;height:12px;border-radius:50%;background:rgba(246,239,221,.35);display:block}
+.dots i.on{background:var(--gold-hi)}
+.wusst{border:2px dashed var(--gold);border-radius:10px;padding:12px 16px;background:var(--paper);display:grid;gap:4px;max-width:66ch}
+.wusst-h{font-family:var(--display);font-size:1.35rem;color:var(--gold);line-height:1}
+.q{font-family:var(--body);font-weight:700;font-size:1.32rem;line-height:1.3;color:var(--ink)}
+.riddle .q{font-family:var(--display);font-size:1.75rem;font-weight:700;color:var(--lapis);line-height:1.15;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:14px 18px}
+.how{font-size:.92rem;color:var(--ink-2);display:flex;gap:8px;align-items:flex-start}
+.how svg{flex:none;margin-top:2px}
+.prog{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.prog i{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;border:2px solid rgba(246,239,221,.4);font-style:normal;font-size:.7rem;font-weight:700;color:rgba(246,239,221,.8)}
+.prog i.cur{border-color:var(--gold-hi);color:var(--gold-hi);box-shadow:0 0 0 3px rgba(232,198,100,.25)}
+.prog i.c10{background:#DADDE2;border-color:#fff;color:#3B4048}
+.prog i.c5{background:#B7BCC4;border-color:#DADDE2;color:#2F333A}
+.prog i.c2,.prog i.c0{background:#8F959E;border-color:#B7BCC4;color:#fff}
+.prog-l{font-size:.8rem;color:rgba(246,239,221,.85);font-weight:700;margin-right:4px}
+
+/* Auswahl */
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.opt{display:flex;align-items:center;gap:10px;text-align:left;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:12px 16px;min-height:56px;cursor:pointer;font-size:1.05rem;box-shadow:0 3px 0 var(--edge)}
+.opt:hover:not(:disabled){border-color:var(--lapis-2);background:#fff}
+.opt:disabled{cursor:default}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);box-shadow:none;text-decoration:line-through;text-decoration-thickness:1px}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);box-shadow:0 3px 0 var(--ok);font-weight:700}
+.opt svg,.chip svg{flex:none}
+
+/* Richtig/Falsch */
+.tf{display:grid;gap:10px}
+.tf-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:10px 12px}
+.tf-row p{display:flex;gap:8px;align-items:flex-start}
+.tf-row.ok{border-color:var(--ok);background:var(--ok-bg)}
+.tf-row.bad{border-color:var(--bad);background:var(--bad-bg)}
+.tf-row.ok p{color:var(--ok)}.tf-row.bad p{color:var(--bad)}
+.tf-btns{display:flex;gap:6px}
+.tfb{min-height:44px;padding:6px 12px;border-radius:8px;border:2px solid var(--edge);background:#fff;cursor:pointer;font-weight:700;font-size:.92rem;white-space:nowrap}
+.tfb.on{background:var(--lapis);border-color:var(--lapis-deep);color:var(--vellum)}
+.tfb:disabled{cursor:default}
+@media (max-width:560px){.tf-row{grid-template-columns:1fr}.tf-btns .tfb{flex:1}}
+
+/* Karten-Stapel & Felder */
+.pool-wrap{display:grid;gap:6px}
+.pool-label{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.pool{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:var(--vellum-3);border-radius:10px;min-height:68px;align-items:flex-start;box-shadow:inset 0 2px 6px rgba(90,75,59,.18)}
+.pool-empty{font-size:.9rem;color:var(--ink-2);padding:8px 4px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--paper);border:2px solid var(--edge);border-radius:8px;padding:8px 12px;min-height:44px;font-size:1rem;cursor:pointer;text-align:left;box-shadow:0 2px 0 var(--edge);line-height:1.25;max-width:100%}
+.chip:hover{border-color:var(--lapis-2)}
+.chip.sel{border-color:var(--lapis);background:var(--lapis-tint);box-shadow:0 0 0 3px rgba(43,60,133,.3);transform:translateY(-2px)}
+.chip.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);box-shadow:none;cursor:default;font-weight:700}
+.chip.bad{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.slot{display:flex;flex-wrap:wrap;gap:6px;align-items:center;min-height:56px;padding:6px;border:2px dashed rgba(90,75,59,.55);border-radius:10px;background:rgba(255,251,241,.55);cursor:pointer;min-width:0}
+.slot.armed{border-color:var(--lapis-2);background:rgba(221,226,244,.6)}
+.slot.selT{border-style:solid;border-color:var(--lapis);background:var(--lapis-tint)}
+.ph{font-size:.88rem;color:var(--ink-2);padding:0 6px;font-style:italic}
+.match{display:grid;gap:10px}
+.mrow{display:grid;grid-template-columns:minmax(6.5em,.75fr) minmax(0,1.6fr);gap:10px;align-items:center}
+.mterm{font-weight:700;font-size:1.05rem;color:var(--lapis);background:var(--paper);border:2px solid var(--lapis);border-radius:10px;padding:10px 12px;min-height:56px;display:flex;align-items:center}
+.buckets{display:grid;grid-template-columns:repeat(var(--bn,3),minmax(0,1fr));gap:10px}
+.slot.bucket{flex-direction:column;align-items:stretch;min-height:150px;padding:10px;gap:8px;cursor:pointer}
+.b-head{display:grid;text-align:center;border-bottom:2px solid var(--edge);padding-bottom:6px}
+.b-head b{font-family:var(--display);font-size:1.5rem;line-height:1;color:var(--lapis)}
+.b-head small{font-size:.82rem;color:var(--ink-2)}
+.b-body{display:flex;flex-wrap:wrap;gap:6px}
+.gaptext{font-size:1.1rem;line-height:2.6;max-width:70ch}
+.slot.gap{display:inline-flex;vertical-align:middle;min-height:48px;min-width:7.5em;padding:3px;margin:2px 0;line-height:1.3}
+.order{list-style:none;margin:0;padding:0;display:grid;gap:8px;counter-reset:o}
+.order li{counter-increment:o;display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:8px;align-items:center}
+.order li::before{content:counter(o) ".";font-family:var(--display);font-size:1.6rem;color:var(--rubric);text-align:right}
+.slot.o{cursor:default}
+
+/* Suchbild & Burg */
+.castlebox{background:#E7DDC2;border-radius:10px;overflow:hidden;border:2px solid var(--edge)}
+.castle{width:100%;height:auto}
+.castle .part{cursor:pointer;outline:none}
+.castle .part:hover .shape{filter:brightness(1.07)}
+.castle .hl{fill:none;stroke:none;pointer-events:none}
+.castle .part.sel .hl,.castle .part:focus-visible .hl{stroke:var(--lapis);stroke-width:4;stroke-dasharray:10 6}
+.castle .part.help .hl{stroke:var(--gold-hi);stroke-width:6;stroke-dasharray:none;animation:blink 1s ease-in-out infinite}
+.castle .part.found .hl{stroke:var(--ok);stroke-width:3;stroke-dasharray:6 5}
+@keyframes blink{50%{stroke-opacity:.25}}
+.plabel rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.plabel.ok rect{fill:var(--ok-bg);stroke:var(--ok)}
+.plabel.on rect{fill:var(--lapis);stroke:var(--lapis-deep)}
+.plabel.on text{fill:var(--vellum)}
+.plabel text{font-family:var(--body);font-weight:700;font-size:18px;fill:var(--ink)}
+.partinfo{background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:12px 16px;display:grid;gap:4px;min-height:78px}
+.partinfo b{font-family:var(--display);font-size:1.5rem;line-height:1;color:var(--rubric)}
+.partchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{background:var(--paper);border:2px solid var(--edge);border-radius:999px;padding:6px 14px;min-height:40px;cursor:pointer;font-weight:700;font-size:.92rem}
+.pchip.on{background:var(--lapis);border-color:var(--lapis-deep);color:var(--vellum)}
+.hot-find{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--lapis);color:var(--vellum);border-radius:10px;padding:10px 16px}
+.hot-find .lbl{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.85;font-weight:700}
+.hot-find b{font-family:var(--display);font-size:1.7rem;line-height:1;color:var(--gold-hi)}
+.hot-find .cnt{margin-left:auto;font-size:.9rem;font-weight:700}
+.hot-msg{font-weight:700;padding:8px 12px;border-radius:8px;display:flex;gap:8px;align-items:center}
+.hot-msg.ok{background:var(--ok-bg);color:var(--ok)}
+.hot-msg.bad{background:var(--bad-bg);color:var(--bad)}
+.hot-msg.info{background:var(--vellum-2)}
+
+/* Dreifelder-Tabelle */
+.gridwrap{overflow-x:auto}
+table.grid{border-collapse:separate;border-spacing:6px;min-width:300px}
+table.grid th{font-size:.9rem;padding:4px;text-align:center;color:var(--ink-2)}
+table.grid tbody th{text-align:left;color:var(--lapis);font-size:1rem;white-space:nowrap}
+.crop{display:grid;place-items:center;text-align:center;min-height:64px;width:100%;min-width:92px;padding:6px 8px;border-radius:8px;border:2px solid rgba(90,75,59,.45);font-weight:700;font-size:.9rem;line-height:1.2;hyphens:manual}
+.crop.W{background:repeating-linear-gradient(-20deg,#E4C46E 0 7px,#D2AE54 7px 10px);color:#3D2C0A}
+.crop.S{background:repeating-linear-gradient(-20deg,#C3CF78 0 7px,#AEBD62 7px 10px);color:#26300B}
+.crop.B{background:radial-gradient(circle at 30% 40%,#9C7A57 0 2px,transparent 3px) 0 0/14px 14px,#B8966F;color:#2E1D0C}
+button.cell{cursor:pointer;background:#FFFBF1;border-style:dashed;color:var(--ink-2);font-size:1rem}
+button.cell.W,button.cell.S,button.cell.B{border-style:solid}
+button.cell.ok{border-color:var(--ok);box-shadow:0 0 0 3px var(--ok)}
+button.cell.bad{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad)}
+button.cell:disabled{cursor:default}
+
+/* Rückmeldung */
+.fb{border-radius:10px;padding:14px 16px;border:2px solid;display:grid;gap:8px}
+.fb.ok{background:var(--ok-bg);border-color:var(--ok)}
+.fb.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb-t{display:flex;align-items:center;gap:8px;font-weight:700;font-size:1.15rem}
+.fb.ok .fb-t{color:var(--ok)}.fb.bad .fb-t{color:var(--bad)}
+.fb-coins{display:inline-flex;align-items:center;gap:6px;margin-left:auto;background:#fff;border-radius:999px;padding:2px 10px 2px 4px;font-weight:700;color:var(--ink)}
+
+/* Abbildungen */
+.fig{margin:4px 0 0;display:grid;gap:8px}
+.fig figcaption{font-size:.82rem;color:var(--ink-2);font-style:italic}
+.tl{padding-top:4px}
+.tl-marks{position:relative;height:46px}
+.tl-pin{position:absolute;bottom:0;transform:translateX(-50%);font-size:.85rem;white-space:nowrap;background:var(--lapis);color:var(--vellum);padding:3px 9px;border-radius:6px}
+.tl-pin::after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-6px;border:6px solid transparent;border-top-color:var(--lapis);border-bottom:0}
+.tl-pin.end{transform:translateX(-100%);border-bottom-right-radius:0}
+.tl-pin.end::after{left:auto;right:-6px;margin:0}
+.tl-pin b{color:var(--gold-hi)}
+.tl-bar{position:relative;height:46px;margin-top:8px;border-radius:6px;overflow:hidden;border:2px solid var(--ink-2)}
+.seg{position:absolute;top:0;bottom:0;display:grid;place-items:center;font-weight:700;font-size:.86rem;overflow:hidden;white-space:nowrap}
+.seg.ant{background:linear-gradient(90deg,#EDE3C9,#D5C6A2);color:var(--ink)}
+.seg.ma{background:var(--rubric);color:#fff;font-family:var(--display);font-size:1.35rem;border-inline:2px solid var(--ink-2)}
+.seg.nz{background:#C9D2E8;color:var(--lapis)}
+.tl-ticks{position:relative;height:22px}
+.tl-ticks span{position:absolute;transform:translateX(-50%);font-size:.8rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.pyr{display:grid;gap:6px;justify-items:center}
+.pyr-row{width:var(--w);display:flex;gap:6px}
+.tier{flex:1;display:grid;text-align:center;padding:10px 8px;border-radius:6px;border:2px solid var(--ink-2);line-height:1.2}
+.tier b{font-family:var(--display);font-size:1.45rem;line-height:1}
+.tier small{font-size:.85rem;margin-top:3px}
+.t-king{background:var(--gold-hi)}
+.t-geist{background:#E6DAEC}
+.t-adel{background:#F2D8D2}
+.t-bauer{background:#D8E6CE}
+.t-patr{background:var(--gold-hi)}
+.t-hand{background:#D9DFF0}
+.t-unter{background:#E7DDCB}
+.lehn{display:grid;gap:4px;justify-items:center}
+.lh-t{width:var(--w);text-align:center;background:var(--paper);border:2px solid var(--ink-2);border-radius:6px;padding:8px;display:grid;line-height:1.2}
+.lh-t:first-child{background:var(--gold-hi)}
+.lh-t b{font-family:var(--display);font-size:1.4rem;line-height:1}
+.lh-t small{font-size:.85rem}
+.lh-t.base{border-style:dashed;background:#D8E6CE}
+.lh-ar{display:flex;gap:10px 22px;justify-content:center;flex-wrap:wrap;font-size:.84rem;font-weight:700}
+.lh-ar span{display:inline-flex;align-items:center;gap:4px}
+.lh-ar .d{color:var(--rubric)}.lh-ar .u{color:var(--lapis)}
+.path{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.path li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:12px;align-items:start}
+.age{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--lapis);color:var(--vellum);line-height:1;text-align:center;align-content:center}
+.age b{font-size:1.35rem;color:var(--gold-hi)}
+.age small{font-size:.62rem;text-transform:uppercase;letter-spacing:.05em}
+.pt{font-family:var(--display);font-size:1.5rem;line-height:1;color:var(--rubric);display:block;margin-bottom:4px}
+.path p{font-size:.95rem}
+.gh{display:grid;gap:6px;justify-items:center}
+.gh-box{text-align:center;border:2px solid var(--ink-2);border-radius:8px;padding:10px 14px;display:grid;line-height:1.2;min-width:min(220px,100%)}
+.gh-box b{font-family:var(--display);font-size:1.45rem;line-height:1}
+.gh-box small{font-size:.85rem}
+.gh-box.herr{background:#F2D8D2}.gh-box.bauern{background:#D8E6CE}.gh-box.kirche{background:#E6DAEC;min-width:0}
+.gh-mid{display:flex;gap:10px 24px;flex-wrap:wrap;justify-content:center;font-size:.88rem;font-weight:700}
+.gh-mid span{display:inline-flex;align-items:center;gap:4px}
+.gh-mid .d{color:var(--rubric)}.gh-mid .u{color:var(--lapis)}
+.gh-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.gh-side{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-size:.88rem;color:var(--ink-2)}
+.df-years{display:flex;gap:6px;flex-wrap:wrap}
+.yb{min-height:44px;padding:6px 16px;border-radius:8px;border:2px solid var(--edge);background:var(--paper);cursor:pointer;font-weight:700}
+.yb.on{background:var(--lapis);color:var(--vellum);border-color:var(--lapis-deep)}
+.df-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.fld{display:grid;gap:6px;padding:10px;border-radius:10px;align-content:start;min-height:120px;place-items:stretch;text-align:left}
+.fld-n{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.fld-c{background:rgba(255,251,241,.9);border-radius:6px;padding:8px 10px;display:grid;line-height:1.25}
+.fld-c small{font-weight:400;font-size:.84rem}
+.rights{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.right{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:10px 12px}
+.right svg{width:40px;height:40px;color:var(--lapis)}
+.right b{display:block;line-height:1.2}
+.right small{font-size:.85rem;color:var(--ink-2)}
+
+/* Karte */
+.map-head{display:grid;gap:6px}
+.mapbox{background:#EEE4C8;border-radius:10px;overflow:hidden}
+.map{width:100%;height:auto}
+.map .loc{cursor:pointer;outline:none}
+.map .loc.locked{cursor:not-allowed;opacity:.55}
+.map .loc:focus-visible .focusring{stroke:var(--rubric);stroke-width:4}
+.map .focusring{fill:none;stroke:none}
+.map .loc:not(.locked):hover .icon{transform:translateY(-3px)}
+.map .icon{transition:transform .2s}
+.map .pulse{fill:none;stroke:var(--gold-hi);stroke-width:5;stroke-dasharray:8 10;animation:spin 14s linear infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spin{to{transform:rotate(360deg)}}
+.m-name{font-family:var(--display);font-weight:700;font-size:27px;fill:var(--ink)}
+.m-nr{font-family:var(--body);font-weight:700;font-size:18px;fill:#fff}
+.m-small{font-family:var(--body);font-weight:700;font-size:15px;fill:var(--ink)}
+.stlist{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+@media (min-width:600px){.stlist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;text-align:left;background:var(--vellum);border:0;border-radius:6px;padding:14px 16px;box-shadow:0 6px 18px rgba(0,0,0,.3);cursor:pointer;color:var(--ink)}
+.stc:hover:not(.locked){background:var(--paper)}
+.stc.locked{opacity:.7;cursor:not-allowed}
+.stc .nm{font-family:var(--display);font-size:1.6rem;font-weight:700;line-height:1;color:var(--lapis)}
+.stc .tp{font-size:.9rem;color:var(--ink-2)}
+.stc .status{display:flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;margin-top:4px;flex-wrap:wrap}
+.status span{display:inline-flex;align-items:center;gap:4px}
+.status .st-ok{color:var(--ok)}.status .st-next{color:var(--rubric)}.status .st-lock{color:var(--ink-2)}
+.stc.fin{grid-column:1/-1;background:var(--gold-hi)}
+.stc.fin .nm{color:var(--ink)}
+
+/* Ende einer Station */
+.done-top{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.bigseal{width:120px;height:120px;flex:none}
+.bigseal svg{width:100%;height:100%}
+@media (max-width:560px){.bigseal{width:92px;height:92px}}
+.stamp{animation:stamp .7s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes stamp{0%{transform:scale(2.2) rotate(-18deg);opacity:0}60%{opacity:1}100%{transform:scale(1) rotate(-6deg)}}
+.merk{background:var(--paper);border:2px solid var(--rubric);border-radius:10px;padding:14px 18px;display:grid;gap:8px}
+.merk-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.merk-h > span{font-family:var(--display);font-size:1.55rem;color:var(--rubric);line-height:1}
+.merk-h .speak{margin-left:auto}
+.merk p{font-size:1.08rem}
+.merk .merk-note{font-size:.88rem;color:var(--ink-2);font-style:italic}
+
+/* Urkunde */
+.urk{background:var(--paper);padding:clamp(14px,3vw,24px);border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.urk-in{border:3px double var(--rubric);outline:2px solid var(--gold);outline-offset:5px;padding:clamp(18px,4vw,40px);display:grid;gap:12px;text-align:center;justify-items:center;background:radial-gradient(ellipse at center,#FFFDF6,#F3EAD2)}
+.urk-t{font-family:var(--display);font-weight:800;font-size:clamp(3rem,10vw,5.2rem);line-height:.9;color:var(--rubric)}
+.urk-name{font-family:var(--display);font-weight:700;font-size:clamp(2rem,6vw,3rem);line-height:1.05;color:var(--lapis);border-bottom:2px solid var(--gold);padding:0 12px 4px;min-width:min(320px,90%);word-break:break-word}
+.urk p{max-width:46ch}
+.urk-meta{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;font-weight:700}
+.urk-seals{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap}
+.urk-seals svg{width:52px;height:52px}
+.urk-seals .royal{width:96px;height:96px}
+.urk-date{font-style:italic;color:var(--ink-2);font-size:.92rem}
+.namefield{display:grid;gap:6px;max-width:420px}
+.namefield label{font-weight:700}
+.namefield input{font:inherit;font-size:1.1rem;padding:10px 12px;border:2px solid var(--edge);border-radius:8px;background:#fff;color:var(--ink);min-height:50px}
+
+/* Einblendungen */
+.ov-back{position:fixed;inset:0;z-index:60;background:rgba(18,26,64,.62);display:flex;align-items:center;justify-content:center;padding:16px}
+.ov-card{background:var(--vellum);color:var(--ink);width:100%;max-width:640px;max-height:calc(100vh - 32px);overflow:auto;border-radius:10px;padding:22px;display:grid;gap:14px;box-shadow:inset 0 0 0 5px var(--vellum),inset 0 0 0 6px rgba(175,37,25,.45),0 20px 50px rgba(0,0,0,.5);align-content:start}
+.ov-head{display:flex;align-items:center;gap:12px}
+.ov-head h2{flex:1}
+.x{flex:none;width:44px;height:44px;border-radius:50%;border:2px solid var(--edge);background:var(--paper);cursor:pointer;font-size:1.5rem;line-height:1;display:grid;place-items:center}
+.hint-seal{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--lapis);color:var(--gold-hi);font-family:var(--display);font-size:1.9rem;box-shadow:inset 0 0 0 3px var(--gold)}
+.hint-text{font-size:1.18rem;line-height:1.55}
+.gsearch{font:inherit;padding:10px 12px;border:2px solid var(--edge);border-radius:8px;background:#fff;min-height:48px;width:100%}
+.glist{display:grid;gap:0;margin:0}
+.gitem{padding:10px 0;border-bottom:1px solid var(--edge);display:grid;gap:2px}
+.gitem dt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gitem dt b{color:var(--rubric);font-size:1.08rem}
+.gitem dd{margin:0}
+.stag{font-size:.7rem;font-weight:700;padding:1px 8px;border-radius:999px;color:#fff}
+.mlist{display:grid;gap:12px}
+.mitem{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;background:var(--paper);border:2px solid var(--edge);border-radius:10px;padding:12px}
+.mitem svg.sl{width:54px;height:54px}
+.mitem b{font-family:var(--display);font-size:1.4rem;color:var(--lapis);line-height:1;display:block;margin-bottom:4px}
+.mitem.locked{opacity:.65}
+.menu{display:grid;gap:8px}
+.menu .btn{justify-content:flex-start}
+.confirm{background:var(--bad-bg);border:2px solid var(--bad);border-radius:10px;padding:12px;display:grid;gap:10px}
+.tinfo{display:grid;gap:10px}
+.tinfo h3{font-size:1.05rem;color:var(--lapis)}
+.tinfo ul{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.twrap{overflow-x:auto}
+.tinfo table{border-collapse:collapse;font-size:.9rem;min-width:420px}
+.tinfo th,.tinfo td{border:1px solid var(--edge);padding:6px 8px;text-align:left;vertical-align:top}
+.tinfo th{background:var(--vellum-2)}
+
+@media (max-width:560px){
+  h2{font-size:1.75rem}
+  .band h1{font-size:1.8rem}
+  .band-in{padding:12px 14px;gap:10px}
+  .mrow{grid-template-columns:1fr}
+  .mterm{min-height:0;padding:8px 12px}
+  .guide .av{width:60px;height:60px}
+  .buckets{gap:6px}
+  .slot.bucket{min-height:110px;padding:6px 5px}
+  .b-head b{font-size:1.12rem}
+  .b-head small{font-size:.74rem}
+  .bucket .chip{font-size:.86rem;padding:6px 7px;min-height:40px}
+  .slot.gap{min-width:5.2em}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="wax" cx="40%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#CF4A38"/><stop offset=".55" stop-color="#A5241B"/><stop offset="1" stop-color="#6E120E"/>
+    </radialGradient>
+    <radialGradient id="waxgold" cx="40%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#F3D682"/><stop offset=".6" stop-color="#C99A32"/><stop offset="1" stop-color="#7E5A14"/>
+    </radialGradient>
+    <pattern id="fW" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)"><rect width="10" height="10" fill="#DDBB5F"/><rect width="10" height="3" fill="#BF9A3F"/></pattern>
+    <pattern id="fS" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)"><rect width="10" height="10" fill="#B5C267"/><rect width="10" height="3" fill="#94A34C"/></pattern>
+    <pattern id="fB" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#B48F68"/><circle cx="4" cy="4" r="1.6" fill="#8F6D4C"/><circle cx="10" cy="9" r="1.2" fill="#8F6D4C"/></pattern>
+    <clipPath id="mapclip"><rect x="16" y="16" width="768" height="488" rx="4"/></clipPath>
+  </defs>
+</svg>
+<header class="bar" id="bar"></header>
+<main class="wrap" id="main"></main>
+<div id="ov"></div>
+
+<script>
+/* =========================================================
+   INHALTE
+   ========================================================= */
+const LV = {
+  1:{name:'Lehrling', desc:'Kurze Texte. 3 Antworten zur Auswahl. Nach einem Fehler öffnet sich die Hilfekarte von selbst.'},
+  2:{name:'Geselle',  desc:'Texte mit mehr Infos. 4 Antworten zur Auswahl. Mehr Aufgaben.'},
+  3:{name:'Meister',  desc:'Alle Infos. Extra-Denkfragen. Lückentexte mit mehr falschen Wörtern.'}
+};
+
+const STATIONS = [
+{ id:'pfalz', nr:1, name:'Königspfalz', thema:'Stände und Lehnswesen', col:'#6B2C6F',
+  guide:{name:'Schreiber Ulrich', text:'Sei gegrüßt! Ich bin Ulrich, der Schreiber des Königs. Hier in der Pfalz erfährst du, wie die Menschen im Mittelalter zusammenlebten. Wer hatte das Sagen? Wer musste arbeiten? Lies die Karten genau. Danach kommen die Aufgaben.'},
+  cards:[
+    {title:'Wann war das Mittelalter?', fig:'timeline', p:[
+      ['Das [[Mittelalter]] dauerte ungefähr von 500 bis 1500 nach Christus. Das sind etwa 1000 Jahre.',1],
+      ['Davor war die [[Antike]]. Danach kam die [[Neuzeit]]. Wir leben heute in der Neuzeit.',1],
+      ['Deine Reise spielt im Jahr 1200.',1],
+      ['Man teilt das Mittelalter in drei Abschnitte: Frühmittelalter, Hochmittelalter und Spätmittelalter. Das Jahr 1200 gehört zum Hochmittelalter.',2]
+    ]},
+    {title:'Die Ständeordnung', fig:'staende', p:[
+      ['Im Mittelalter gehörte jeder Mensch zu einer Gruppe. Diese Gruppen heißen [[Stände|Stand]].',1],
+      ['Die [[Geistlichen|Geistliche]] beten für alle Menschen. Das sind zum Beispiel Priester, Mönche und Nonnen.',1],
+      ['Der [[Adel]] schützt das Land und kämpft. Dazu gehören der König, die [[Fürsten|Fürst]] und die Ritter.',1],
+      ['Die Bauern arbeiten und ernähren alle. Etwa 9 von 10 Menschen waren Bauern.',1],
+      ['Man wurde in seinen Stand hineingeboren. Die Menschen glaubten: Gott hat diese Ordnung so gewollt.',1],
+      ['Den Stand zu wechseln war fast unmöglich. Ein Bauernsohn wurde zum Beispiel fast nie Ritter.',2],
+      ['Auf einem Bild aus dem Jahr 1488 steht auf Latein: „Du bete demütig! Du schütze! Und du arbeite!“',3]
+    ]},
+    {title:'Das Lehnswesen', fig:'lehns', p:[
+      ['Der König besaß sehr viel Land. Allein konnte er es nicht schützen und verwalten.',1],
+      ['Darum verlieh er Land an Fürsten. Verliehenes Land heißt [[Lehen]]. Wer ein Lehen bekam, war ein [[Vasall]].',1],
+      ['Der Vasall versprach [[Treue]] und [[Kriegsdienst]]. Er musste also mit dem König in den Krieg ziehen. Der König gab ihm dafür Land und Schutz. Der König war sein [[Lehnsherr]].',1],
+      ['Die Fürsten gaben einen Teil ihres Landes als Lehen an Ritter weiter.',1],
+      ['Das Wort Lehen kommt von „leihen“. Das Land gehörte dem Vasallen also nicht. Er durfte es aber nutzen. Später durften die Söhne ein Lehen oft erben.',2],
+      ['Fürsten, die ihr Lehen direkt vom König bekamen, heißen [[Kronvasallen|Kronvasall]]. Ritter, die ihr Lehen von einem Fürsten bekamen, heißen [[Untervasallen|Untervasall]].',3]
+    ], box:['Der König hatte keine feste Hauptstadt. Er reiste mit seinem Hof durch das Land. Unterwegs wohnte er in einer [[Pfalz]]. Eine berühmte Pfalz steht in Hessen, in Gelnhausen. [[Kaiser]] Friedrich Barbarossa ließ sie um 1170 bauen.',1]}
+  ],
+  tasks:[
+    {type:'mc', q:'Wann war ungefähr das Mittelalter?', o:['von 500 bis 1500 nach Christus','von 1800 bis 2000 nach Christus','von 3000 bis 1000 vor Christus','von 1000 bis 1200 nach Christus'], h:'Schau auf den Zeitstrahl. Das Mittelalter dauerte etwa 1000 Jahre. Es endete ungefähr im Jahr 1500.', e:'Das Mittelalter dauerte etwa 1000 Jahre: von ungefähr 500 bis 1500 nach Christus.'},
+    {type:'match', q:'Welcher Stand hat welche Aufgabe?', pairs:[['Geistliche','beten'],['Adel','schützen und kämpfen'],['Bauern','arbeiten und alle ernähren']], n:[3,3,3], h:'Geistliche arbeiten für die Kirche. Zum Adel gehören Ritter und Fürsten. Bauern arbeiten auf dem Feld.', e:'Geistliche beten, der Adel schützt, die Bauern arbeiten.'},
+    {type:'sort', q:'Zu welchem Stand gehören diese Menschen?', buckets:[['g','Geistliche','beten'],['a','Adel','schützen'],['b','Bauern','arbeiten']], items:[['Mönch','g',1],['Nonne','g',1],['König','a',1],['Ritter','a',1],['Bauer','b',1],['Magd auf dem Hof','b',1],['Bischof','g',2],['Graf','a',2],['Äbtissin','g',3],['Knecht auf dem Hof','b',3]], h:'Wer im Kloster oder für die Kirche arbeitet, ist geistlich. Könige, Grafen und Ritter gehören zum Adel. Wer auf dem Feld und im Stall arbeitet, gehört zu den Bauern.', e:'Kloster und Kirche: Geistliche. Burg und viel Land: Adel. Feld und Stall: Bauern.'},
+    {type:'tf', q:'Stimmt das?', items:[['Man konnte sich seinen Stand selbst aussuchen.',false,1],['Die meisten Menschen waren Bauern.',true,1],['Der König gehörte zum Adel.',true,1],['Die Menschen glaubten, dass Gott die Ständeordnung gewollt hat.',true,2],['Ein Bauernsohn konnte leicht Ritter werden.',false,3]], h:'Lies noch einmal die Karte „Die Ständeordnung“. Man wurde in seinen Stand hineingeboren.', e:'Den Stand bekam man durch die Geburt. Fast alle Menschen waren Bauern.'},
+    {type:'order', q:'Die Lehnspyramide: Wer steht oben, wer unten? Beginne oben.', items:[{t:'König'},{t:'Fürsten'},{t:'Ritter'},{t:'Bauern'}], h:'Der König verleiht Land an die Fürsten. Die Fürsten verleihen Land an die Ritter. Ganz unten arbeiten die Bauern.', e:'König → Fürsten → Ritter → Bauern. Das Land wird von oben nach unten verliehen.'},
+    {type:'gap', q:'Setze die richtigen Wörter ein.', text:'Der König verleiht {Land} an einen Fürsten. Dieses Land heißt {Lehen}. Der Fürst ist jetzt ein {Vasall}. Er verspricht dem König {Treue} und Kriegsdienst.', extra:[[],['Geld'],['Geld','Zunft','Steuern']], h:'Alle Wörter stehen auf der Karte „Das Lehnswesen“.', e:'Der König verleiht Land. Das Land heißt Lehen. Wer es bekommt, ist ein Vasall und verspricht Treue.'},
+    {type:'mc', lv:2, q:'Was bekommt ein Vasall von seinem Lehnsherrn?', o:['Land und Schutz','eine Werkstatt in der Stadt','einen Platz im Kloster','jeden Monat einen Lohn'], h:'Der Lehnsherr verleiht etwas. Und er beschützt seinen Vasallen.', e:'Der Lehnsherr gibt Land (das Lehen) und Schutz. Der Vasall gibt dafür Treue und Kriegsdienst.'},
+    {type:'mc', lv:3, denk:true, q:'Warum verlieh der König überhaupt Land an Vasallen?', o:['Allein konnte er sein großes Reich nicht schützen und verwalten.','Er wollte selbst kein Land mehr besitzen.','Die Bauern hatten es so bestimmt.','Er verkaufte das Land, um reich zu werden.'], h:'Überlege: Wie groß war das Reich? Konnte ein Mensch alles allein schaffen?', e:'Das Reich war riesig. Der König brauchte treue Helfer, die für ihn kämpften und das Land verwalteten.'}
+  ],
+  merk:'Das Mittelalter dauerte etwa von 500 bis 1500. Jeder Mensch gehörte zu einem Stand: Geistliche beten, Adlige schützen, Bauern arbeiten. Im Lehnswesen verleiht der König Land (Lehen) an Vasallen. Die Vasallen versprechen dafür Treue und Kriegsdienst.'
+},
+{ id:'burg', nr:2, name:'Burg', thema:'Leben auf der Burg', col:'#A5261C',
+  guide:{name:'Knappe Konrad', text:'Hallo! Ich bin Konrad, 15 Jahre alt. Ich bin Knappe auf dieser Burg. Später will ich Ritter werden. Komm mit, ich zeige dir alles!'},
+  cards:[
+    {title:'Warum baute man Burgen?', p:[
+      ['Eine [[Burg]] war Wohnung und Festung zugleich.',1],
+      ['Hier wohnte der [[Burgherr]] mit seiner Familie. Er war ein Adliger. Auch Diener, Mägde, Knechte und Soldaten lebten auf der Burg.',1],
+      ['Die Burg schützte vor Feinden. Von der Burg aus herrschte der Burgherr über das Land und die Dörfer ringsum.',1],
+      ['Viele Burgen stehen auf einem Berg. Das ist eine [[Höhenburg]]. Feinde kamen schwer hinauf. Und man konnte weit ins Land sehen. Andere Burgen sind von Wasser umgeben. Das ist eine [[Wasserburg]].',1],
+      ['Das Leben auf der Burg war oft kalt, dunkel und eng. Die Fenster waren klein. Nur wenige Räume konnte man heizen, zum Beispiel die [[Kemenate]].',1],
+      ['Beim Bau einer Burg mussten oft die Bauern der Umgebung helfen – ohne Lohn, als [[Frondienst]].',3]
+    ]},
+    {title:'Die Teile einer Burg', fig:'burg', p:[
+      ['Tippe in der Zeichnung auf die Teile der Burg. Dann erfährst du, wozu sie da waren.',1]
+    ], box:['In Hessen gibt es viele Burgen und Burgruinen. Die Burg Münzenberg in der Wetterau hat zwei hohe Bergfriede. Man nennt sie auch „Wetterauer Tintenfass“.',1]},
+    {title:'Vom Pagen zum Ritter', fig:'ritter', p:[
+      ['Meist konnten nur Söhne von Adligen Ritter werden. Die Ausbildung dauerte viele Jahre.',1],
+      ['Ein Ritter sollte treu, tapfer und fromm sein. Er sollte Schwache schützen.',1],
+      ['Ritter übten bei [[Turnieren|Turnier]]. Das waren Kampfspiele, oft zu Pferd.',2],
+      ['Unter dem Helm konnte man einen Ritter nicht erkennen. Darum trug er ein [[Wappen]] auf seinem Schild.',3]
+    ]}
+  ],
+  tasks:[
+    {type:'hot', q:'Finde die Teile der Burg.', targets:[['bergfried',1],['palas',2],['burggraben',1],['zugbruecke',1],['ringmauer',3],['brunnen',3]], e:'Du kennst jetzt die wichtigsten Teile einer Burg.'},
+    {type:'match', q:'Wozu diente dieser Teil der Burg?', pairs:[['Bergfried','höchster Turm und letzte Zuflucht'],['Burggraben','hält Feinde von der Mauer fern'],['Brunnen','liefert Wasser, auch bei einer Belagerung'],['Palas','Wohnhaus mit großem Saal'],['Zugbrücke','kann bei Gefahr hochgezogen werden']], n:[3,4,5], h:'Denk an die Zeichnung der Burg. Der Bergfried ist der höchste Turm. Im Palas wohnt der Burgherr.', e:'Jeder Teil der Burg hatte eine Aufgabe. Viele dienten dem Schutz vor Feinden.'},
+    {type:'order', q:'Vom Jungen zum Ritter: Bringe die Stationen in die richtige Reihenfolge.', items:[{t:'als Sohn einer adligen Familie geboren',lv:3},{t:'Page',t1:'Page (etwa 7 Jahre)'},{t:'Knappe',t1:'Knappe (etwa 14 Jahre)'},{t:'Ritterschlag',t1:'Ritterschlag (etwa 21 Jahre)'},{t:'kämpft als Ritter für seinen Lehnsherrn',lv:2}], h:'Erst ist der Junge Page (etwa 7 Jahre), dann Knappe (etwa 14 Jahre). Mit etwa 21 Jahren bekommt er den Ritterschlag.', e:'Page → Knappe → Ritterschlag. Die Ausbildung dauerte viele Jahre.'},
+    {type:'mc', q:'Was lernte ein Knappe?', o:['mit Schwert und Lanze kämpfen','ein Handwerk in der Stadt','Felder pflügen und säen','Bücher abschreiben im Kloster'], h:'Ein Knappe dient einem Ritter. Er will selbst einmal Ritter werden.', e:'Der Knappe lernte kämpfen. Er begleitete seinen Ritter und kümmerte sich um Pferd und Waffen.'},
+    {type:'tf', q:'Stimmt das?', items:[['Auf einer Burg war es immer warm und gemütlich.',false,1],['Der Brunnen war bei einer Belagerung sehr wichtig.',true,1],['Der Burgherr war ein Adliger.',true,1],['Jeder Bauernsohn konnte Ritter werden.',false,2],['Ritter trugen ein Wappen, damit man sie erkennen konnte.',true,3]], h:'Burgen hatten kleine Fenster und wenige warme Räume. Ritter kamen meist aus adligen Familien.', e:'Auf der Burg war es oft kalt und eng. Wasser aus dem Brunnen war bei einer Belagerung lebenswichtig.'},
+    {type:'mc', q:'Warum bauten viele Burgherren ihre Burg auf einen Berg?', o:['Feinde kamen schwer hinauf, und man konnte weit sehen.','Auf dem Berg war es wärmer.','Die Bauern wohnten gern auf dem Berg.','Auf dem Berg gab es besonders viel Wasser.'], h:'Denk an Feinde: Ist es leicht oder schwer, einen steilen Berg hinaufzukommen?', e:'Eine Höhenburg war schwer anzugreifen. Vom Berg aus sah man Feinde schon früh kommen.'},
+    {type:'gap', lv:2, q:'Setze die richtigen Wörter ein.', text:'Eine Burg war Wohnung und {Festung} zugleich. Der höchste Turm heißt {Bergfried}. Der Burgherr wohnte im {Palas}. Ein Ritter sollte {treu} und tapfer sein.', extra:[[],['Kirche'],['Kirche','Rathaus','Brache']], h:'Die Wörter stehen auf den Karten zur Burg.', e:'Burgen waren Wohnung und Festung. Der Bergfried ist der höchste Turm. Im Palas wohnte der Burgherr.'},
+    {type:'mc', lv:3, denk:true, q:'Feinde belagern eine Burg viele Wochen lang. Was wird für die Menschen in der Burg zum größten Problem?', o:['Essen und Wasser gehen zur Neige.','Es wird zu laut.','Die Ritter verlernen das Kämpfen.','Die Zinnen fallen herunter.'], h:'Bei einer Belagerung kommt nichts mehr in die Burg hinein. Was braucht jeder Mensch jeden Tag?', e:'Bei einer Belagerung kam nichts mehr in die Burg. Darum waren Vorräte und ein eigener Brunnen so wichtig.'}
+  ],
+  merk:'Die Burg war Wohnung und Festung eines Adligen. Wichtige Teile sind Bergfried, Palas, Ringmauer, Burggraben und Brunnen. Ein adliger Junge wurde erst Page, dann Knappe und schließlich Ritter.'
+},
+{ id:'dorf', nr:3, name:'Dorf', thema:'Leben auf dem Land', col:'#3A7132',
+  guide:{name:'Bäuerin Hilde', text:'Guten Tag! Ich bin Hilde. Ich lebe mit meiner Familie hier im Dorf. Wir arbeiten von früh bis spät. Schau dir an, wie wir leben!'},
+  cards:[
+    {title:'Die Grundherrschaft', fig:'grund', p:[
+      ['Fast alle Menschen lebten auf dem Land, in Dörfern.',1],
+      ['Das Land gehörte meistens einem [[Grundherrn|Grundherr]]. Das war ein Adliger oder ein Kloster.',1],
+      ['Die Bauern bewirtschafteten das Land. Dafür mussten sie [[Abgaben]] geben, zum Beispiel Getreide, Eier oder Hühner.',1],
+      ['Außerdem mussten sie auf den Feldern des Grundherrn arbeiten – ohne Lohn. Das heißt [[Frondienst]].',1],
+      ['Der Grundherr gab den Bauern dafür Land und Schutz.',1],
+      ['Ein Zehntel der Ernte bekam die Kirche. Diese Abgabe heißt der [[Zehnt]].',1],
+      ['Viele Bauern waren unfrei. Man nennt sie [[Hörige]]. Sie durften ihren Hof nicht ohne Erlaubnis verlassen. Oft brauchten sie sogar zum Heiraten die Erlaubnis des Grundherrn.',3]
+    ], box:['„Fron“ ist ein altes Wort für „Herr“. Frondienst bedeutet also: Dienst für den Herrn.',1]},
+    {title:'Die Dreifelderwirtschaft', fig:'dreifeld', p:[
+      ['Die Felder eines Dorfes waren in drei große Teile geteilt.',1],
+      ['Auf einem Feld wuchs [[Wintergetreide]], zum Beispiel Roggen. Man säte es im Herbst.',1],
+      ['Auf einem Feld wuchs [[Sommergetreide]], zum Beispiel Hafer. Man säte es im Frühjahr.',1],
+      ['Ein Feld blieb frei. Das ist die [[Brache]]. Hier weidete das Vieh. Der Boden konnte sich erholen.',1],
+      ['Jedes Jahr wechselte man: Aus dem Winterfeld wird das Sommerfeld. Aus dem Sommerfeld wird die Brache. Aus der Brache wird das Winterfeld.',1],
+      ['So wurde der Boden nicht ausgelaugt. Die Ernte wurde größer.',2],
+      ['Früher hatte man die Felder nur in zwei Teile geteilt. Dann lag jedes Jahr die Hälfte brach. Bei der [[Dreifelderwirtschaft]] lag nur noch ein Drittel brach.',3]
+    ]},
+    {title:'Alltag im Dorf', p:[
+      ['Die Arbeit war hart. Sie dauerte von Sonnenaufgang bis Sonnenuntergang. Auch die Kinder halfen mit.',1],
+      ['Die Häuser waren aus Holz und Lehm. Das Dach war aus Stroh.',1],
+      ['Oft lebten Menschen und Tiere unter einem Dach. Die Tiere wärmten im Winter das Haus.',1],
+      ['Meistens gab es Brei und Brot. Dazu Gemüse aus dem Garten. Fleisch gab es nur selten.',1],
+      ['Wiesen und Wald nutzten alle Bauern gemeinsam. Das nennt man [[Allmende]]. Dort weidete das Vieh, und dort holte man Holz.',2],
+      ['Wichtige Werkzeuge waren Pflug, Sense, Sichel und Dreschflegel. Die meiste Arbeit machte man mit der Hand oder mit Ochsen und Pferden.',3]
+    ]}
+  ],
+  tasks:[
+    {type:'match', q:'Was bedeuten diese Wörter?', pairs:[['Grundherr','besitzt das Land'],['Abgaben','Teil der Ernte oder Tiere für den Grundherrn'],['Frondienst','Arbeit ohne Lohn für den Grundherrn'],['Zehnt','ein Zehntel der Ernte für die Kirche'],['Allmende','Wiese und Wald, die alle gemeinsam nutzen']], n:[3,4,5], h:'Du findest alle Wörter im Wörterbuch. Tippe oben auf das Buch.', e:'Grundherr, Abgaben, Frondienst und Zehnt: So war das Leben der Bauern geregelt.'},
+    {type:'sort', q:'Wer gibt was? Sortiere.', buckets:[['b','Die Bauern geben …',''],['h','Der Grundherr gibt …','']], items:[['Getreide und Eier','b',1],['Frondienst','b',1],['Schutz','h',1],['Land zum Bewirtschaften','h',1],['Arbeit beim Bau von Wegen','b',2],['den Zehnt an die Kirche','b',3]], h:'Die Bauern arbeiten und geben einen Teil der Ernte ab. Der Grundherr gibt Land und beschützt die Bauern.', e:'Die Bauern gaben Abgaben und leisteten Frondienst. Der Grundherr gab Land und Schutz.'},
+    {type:'grid', q:'Dreifelderwirtschaft: Was wächst im nächsten Jahr?', h:'Die Reihe geht immer so: Wintergetreide → Sommergetreide → Brache → Wintergetreide. Schau, was im Jahr davor auf dem Feld war.', e:'Aus Winter wird Sommer, aus Sommer wird Brache, aus Brache wird Winter. So erholt sich jedes Feld alle drei Jahre.'},
+    {type:'mc', q:'Warum gab es auf einem Feld die Brache?', o:['Damit sich der Boden erholen kann.','Weil die Bauern dort ein Fest feierten.','Weil der König es verboten hatte, dort zu säen.','Weil man dort Steine sammelte.'], h:'Brache heißt: Das Feld ruht ein Jahr lang.', e:'Auf der Brache ruhte der Boden. Das Vieh weidete dort und düngte ihn. Im nächsten Jahr wuchs wieder mehr.'},
+    {type:'tf', q:'Stimmt das?', items:[['Die Bauern bekamen Lohn für den Frondienst.',false,1],['Oft lebten Menschen und Tiere unter einem Dach.',true,1],['Fleisch gab es jeden Tag.',false,1],['Auch Kinder mussten mitarbeiten.',true,2],['Hörige durften ohne Erlaubnis wegziehen.',false,3]], h:'Frondienst ist Arbeit ohne Lohn. Die Bauern waren arm.', e:'Das Leben im Dorf war hart. Alle arbeiteten mit, und Fleisch gab es nur selten.'},
+    {type:'gap', q:'Setze die richtigen Wörter ein.', text:'Das Land gehörte dem {Grundherrn}. Die Bauern gaben ihm {Abgaben}, zum Beispiel Getreide und Eier. Auf seinen Feldern leisteten sie {Frondienst}. Ein Zehntel der Ernte bekam die {Kirche}.', extra:[[],['Zunft'],['Zunft','Lohn','Stadt']], h:'Die Wörter stehen auf der Karte „Die Grundherrschaft“.', e:'Grundherr, Abgaben, Frondienst und der Zehnt für die Kirche gehören zur Grundherrschaft.'},
+    {type:'mc', lv:2, denk:true, q:'Ein Bauer muss drei Tage in der Woche Frondienst leisten. Was bedeutet das für seine Familie?', o:['Er hat weniger Zeit für die eigenen Felder.','Er verdient dadurch viel Geld.','Er darf nicht mehr in die Kirche gehen.','Er muss in die Stadt ziehen.'], h:'Frondienst ist Arbeit für den Herrn. Wann arbeitet der Bauer dann für sich selbst?', e:'Wer viel Frondienst leisten musste, hatte weniger Zeit für die eigene Ernte. Das machte die Familien arm.'},
+    {type:'mc', lv:3, denk:true, q:'Warum war die Dreifelderwirtschaft besser als die Zweifelderwirtschaft?', o:['Es lag weniger Land brach, also gab es mehr Ernte.','Man brauchte keine Tiere mehr.','Die Bauern mussten keine Abgaben mehr zahlen.','Man konnte das ganze Jahr ernten.'], h:'Bei zwei Feldern ruht die Hälfte. Wie viel ruht bei drei Feldern?', e:'Bei zwei Feldern lag die Hälfte brach, bei drei Feldern nur ein Drittel. So wurde mehr Land genutzt.'}
+  ],
+  merk:'Die meisten Menschen im Mittelalter waren Bauern. Sie bewirtschafteten das Land eines Grundherrn. Dafür gaben sie Abgaben und leisteten Frondienst. Die Kirche bekam den Zehnt. Bei der Dreifelderwirtschaft wechselten Wintergetreide, Sommergetreide und Brache jedes Jahr.'
+},
+{ id:'stadt', nr:4, name:'Stadt', thema:'Leben in der Stadt', col:'#28559F',
+  guide:{name:'Händlerin Gertrud', text:'Willkommen in der Stadt! Ich bin Gertrud. Ich handle mit Stoffen. Hier ist immer etwas los: Markt, Werkstätten und enge Gassen. Komm herein, bevor am Abend die Tore schließen!'},
+  cards:[
+    {title:'Wie entstanden Städte?', fig:'rechte', p:[
+      ['Im Hochmittelalter entstanden viele neue Städte.',1],
+      ['Städte entstanden oft an wichtigen Orten: an Handelswegen, an Flüssen und Brücken, bei Burgen oder Klöstern. Dort trafen sich Händler.',1],
+      ['Die Stadtmauer schützte die Stadt. Nachts wurden die Tore geschlossen.',2],
+      ['Der König oder ein Fürst gab der Stadt das [[Stadtrecht]]. Dann durfte die Stadt vier wichtige Dinge:',1]
+    ], box:['In Frankfurt am Main gab es schon im Mittelalter große Messen. Händler kamen von weit her, um dort ihre Waren zu verkaufen.',1]},
+    {title:'Wer lebte in der Stadt?', fig:'stadtvolk', p:[
+      ['In der Stadt lebten verschiedene Gruppen.',1],
+      ['Die [[Patrizier]] waren reiche Kaufleute. Sie saßen im [[Rat]] und bestimmten, was in der Stadt passiert.',1],
+      ['Die Handwerker hatten eine eigene Werkstatt. Zum Beispiel Bäcker, Schmiede und Schuster.',1],
+      ['Zur [[Unterschicht]] gehörten Mägde, Knechte, [[Tagelöhner]] und Bettler. Sie waren arm und hatten kaum Rechte.',1],
+      ['„Stadtluft macht frei“: Ein unfreier Bauer floh in die Stadt. Holte ihn sein Herr nicht innerhalb von einem Jahr und einem Tag zurück, dann war er frei.',1],
+      ['In der Stadt war es eng und schmutzig. Abfall landete auf der Gasse. Schweine liefen herum. Weil viele Häuser aus Holz waren, brannte es oft.',2],
+      ['Nicht alle Einwohner waren [[Bürger]] mit allen Rechten. Dazu musste man meist ein Haus in der Stadt besitzen.',3]
+    ]},
+    {title:'Die Zünfte', fig:'handwerk', p:[
+      ['Handwerker mit dem gleichen Beruf schlossen sich zusammen. So eine Gruppe heißt [[Zunft]].',1],
+      ['Die Zunft bestimmte: Wer darf in der Stadt arbeiten? Wie gut muss die Ware sein? Wie viel darf sie kosten?',1],
+      ['Die Zunft half ihren Mitgliedern in Not, zum Beispiel bei Krankheit.',1],
+      ['Die Ausbildung hatte drei Stufen: [[Lehrling]], [[Geselle]] und [[Meister]].',1],
+      ['Nur wer in der Zunft war, durfte das Handwerk in der Stadt ausüben. Das nennt man [[Zunftzwang]].',2],
+      ['Auch Kaufleute schlossen sich zusammen. Ihre Gruppe heißt [[Gilde]].',2]
+    ], box:['Viele Straßennamen erinnern noch heute an die Handwerker: Bäckergasse, Schmiedgasse, Gerbergasse. Gibt es so eine Straße auch bei dir? Übrigens: Die Stufen in diesem Spiel heißen wie die Stufen im Handwerk.',1]}
+  ],
+  tasks:[
+    {type:'mc', q:'Wo entstanden viele Städte?', o:['an Handelswegen und Flüssen','tief im Wald, weit weg von allen Wegen','auf hohen Berggipfeln','nur dort, wo der König gerade wohnte'], h:'In der Stadt trafen sich Händler. Wo kamen Händler gut hin?', e:'Städte entstanden dort, wo viele Menschen vorbeikamen: an Handelswegen, Flüssen, Brücken, Burgen und Klöstern.'},
+    {type:'match', q:'Was bedeuten diese Wörter?', pairs:[['Marktrecht','Die Stadt darf einen Markt abhalten.'],['Stadtmauer','schützt die Stadt vor Feinden'],['Rat','regiert die Stadt'],['Zunft','Gruppe von Handwerkern mit gleichem Beruf'],['Gilde','Gruppe von Kaufleuten']], n:[3,4,5], h:'Lies noch einmal die Karten zur Stadt. Du kannst auch ins Wörterbuch schauen.', e:'Mit dem Stadtrecht durften Städte Markt halten, eine Mauer bauen und sich selbst regieren.'},
+    {type:'sort', q:'Wer gehört zu welcher Gruppe?', buckets:[['p','Patrizier','reiche Kaufleute'],['h','Handwerker','eigene Werkstatt'],['u','Unterschicht','arm, kaum Rechte']], items:[['reicher Kaufmann','p',1],['Bäcker','h',1],['Schmied','h',1],['Schuster','h',1],['Bettler','u',1],['Magd','u',1],['Tagelöhner','u',2],['Ratsherr','p',3]], h:'Patrizier sind reich und handeln mit Waren. Handwerker stellen etwas her. Zur Unterschicht gehören arme Menschen ohne eigenen Besitz.', e:'Patrizier, Handwerker und Unterschicht: Die Stadt hatte ihre eigene Ordnung.'},
+    {type:'order', q:'Der Weg im Handwerk: Bringe die Stufen in die richtige Reihenfolge.', items:[{t:'Ein Junge sucht sich einen Meister.',lv:3},{t:'Lehrling: lernt bei einem Meister',t1:'Lehrling'},{t:'Geselle: wandert von Stadt zu Stadt',t1:'Geselle'},{t:'Geselle fertigt ein Meisterstück',lv:2},{t:'Meister: führt eine eigene Werkstatt',t1:'Meister'}], h:'Zuerst lernt man. Dann sammelt man Erfahrung. Am Ende ist man selbst der Chef der Werkstatt.', e:'Lehrling → Geselle → Meister. Genau wie die Stufen in diesem Spiel!'},
+    {type:'tf', q:'Stimmt das?', items:[['Ein unfreier Bauer konnte in der Stadt nach einem Jahr und einem Tag frei werden.',true,1],['In der Stadt durfte jeder ein Handwerk ausüben, wie er wollte.',false,1],['Die Stadtmauer schützte die Stadt.',true,1],['Die Gassen in der Stadt waren sehr sauber.',false,2],['Die Zunft half Mitgliedern, die krank waren.',true,2],['Die Patrizier saßen im Rat der Stadt.',true,3]], h:'Denk an den Spruch „Stadtluft macht frei“. Und: Die Zunft bestimmte, wer arbeiten durfte.', e:'„Stadtluft macht frei“: Deshalb zogen viele Menschen in die Städte. Die Zünfte regelten die Arbeit.'},
+    {type:'gap', q:'Setze die richtigen Wörter ein.', text:'Der König gab der Stadt das {Stadtrecht}. Nun durfte sie eine {Stadtmauer} bauen und einen {Markt} abhalten. Handwerker schlossen sich in einer {Zunft} zusammen.', extra:[[],['Lehen'],['Lehen','Burg','Brache']], h:'Die Wörter stehen auf den Karten „Wie entstanden Städte?“ und „Die Zünfte“.', e:'Stadtrecht, Mauer, Markt und Zunft: Das gehörte zu einer Stadt im Mittelalter.'},
+    {type:'mc', lv:2, q:'Warum zogen viele Bauern in die Stadt?', o:['Dort konnten sie frei werden und Arbeit finden.','In der Stadt mussten sie mehr Frondienst leisten.','In der Stadt gab es keine Arbeit.','In der Stadt mussten sie keine Regeln beachten.'], h:'Denk an den Spruch „Stadtluft macht frei“.', e:'In der Stadt hofften viele auf Freiheit und Arbeit. Das Leben dort war aber oft eng und schmutzig.'},
+    {type:'mc', lv:3, denk:true, q:'Die Zunft legt einen festen Preis für Brot fest. Welchen Vorteil hat das für die Bäcker?', o:['Kein Bäcker kann die anderen mit Billig-Brot verdrängen.','Sie müssen kein Brot mehr backen.','Sie dürfen so viel verlangen, wie sie wollen.','Sie werden dadurch alle zu Patriziern.'], h:'Stell dir vor, ein Bäcker verkauft sein Brot viel billiger. Was passiert mit den anderen Bäckern?', e:'Feste Preise schützten die Handwerker vor zu viel Konkurrenz. Jeder konnte von seiner Arbeit leben.'}
+  ],
+  merk:'Städte entstanden an Handelswegen, Flüssen, Burgen und Klöstern. Mit dem Stadtrecht durften sie einen Markt abhalten, eine Mauer bauen und sich selbst verwalten. Handwerker schlossen sich in Zünften zusammen. Die Ausbildung ging vom Lehrling über den Gesellen zum Meister.'
+}
+];
+
+const FINALE = { id:'finale', nr:0, name:'Prüfung beim König', thema:'Rätsel: Wer bin ich?', col:'#7A5410',
+  guide:{name:'Der König', text:'Willkommen zurück in meiner Pfalz! Du hast alle vier Siegel gesammelt. Jetzt prüfe ich dich selbst. Löse meine Rätsel. Dann bekommst du deine Urkunde.'},
+  cards:[{title:'Die Prüfung', p:[
+    ['Jedes Rätsel beschreibt eine Person, einen Ort oder ein Wort aus deiner Reise.',1],
+    ['Lies genau. Wähle dann die richtige Antwort. Du kannst jederzeit ins Wörterbuch schauen.',1]
+  ]}],
+  tasks:[
+    {type:'mc', riddle:true, q:'Ich lebe im Kloster und bete viele Stunden am Tag. Wer bin ich?', o:['ein Mönch','ein Ritter','ein Geselle','ein Knappe'], h:'Wer betet? Denk an die Ständeordnung.', e:'Mönche gehören zu den Geistlichen. Ihre Aufgabe ist das Beten.'},
+    {type:'mc', riddle:true, q:'Ich habe vom König Land bekommen. Dafür habe ich ihm Treue geschworen. Wer bin ich?', o:['ein Vasall','ein Bettler','ein Tagelöhner','ein Lehrling'], h:'Denk an das Lehnswesen.', e:'Ein Vasall bekommt ein Lehen und verspricht Treue und Kriegsdienst.'},
+    {type:'mc', riddle:true, q:'Ich bin etwa 14 Jahre alt. Ich diene einem Ritter und lerne kämpfen. Wer bin ich?', o:['ein Knappe','ein Patrizier','ein Mönch','ein Page'], h:'Denk an die Ausbildung zum Ritter.', e:'Mit etwa 14 Jahren wurde ein Page zum Knappen.'},
+    {type:'mc', riddle:true, q:'Ich bin der höchste Turm der Burg. Wer bin ich?', o:['der Bergfried','der Brunnen','die Kapelle','der Palas'], h:'Denk an die Zeichnung der Burg.', e:'Der Bergfried war Ausguck und letzte Zuflucht.'},
+    {type:'mc', riddle:true, q:'Auf mir wächst ein Jahr lang kein Getreide. So kann ich mich erholen. Wer bin ich?', o:['die Brache','der Burggraben','das Winterfeld','die Allmende'], h:'Denk an die Dreifelderwirtschaft.', e:'Die Brache ruht ein Jahr. Danach wird dort wieder Wintergetreide gesät.'},
+    {type:'mc', riddle:true, q:'Ich bin Arbeit ohne Lohn auf den Feldern des Grundherrn. Wer bin ich?', o:['der Frondienst','der Ritterschlag','das Stadtrecht','der Zehnt'], h:'Denk an das Leben im Dorf.', e:'Frondienst heißt: Dienst für den Herrn, ohne Lohn.'},
+    {type:'mc', riddle:true, q:'Ich habe meine Lehre beendet. Jetzt wandere ich von Stadt zu Stadt und lerne dazu. Wer bin ich?', o:['ein Geselle','ein Burgherr','ein Bischof','ein Lehrling'], h:'Denk an die Stufen im Handwerk.', e:'Nach der Lehre ist man Geselle. Später kann man Meister werden.'},
+    {type:'mc', riddle:true, q:'Ich bin reich, handle mit Waren und sitze im Rat der Stadt. Wer bin ich?', o:['ein Patrizier','ein Bettler','ein Knecht','ein Handwerker'], h:'Denk an die Gruppen in der Stadt.', e:'Patrizier waren reiche Kaufleute und regierten die Stadt.'},
+    {type:'mc', riddle:true, lv:2, q:'Ich bin ein Recht. Mit mir darf eine Stadt einen Markt abhalten, eine Mauer bauen und sich selbst verwalten. Wer bin ich?', o:['das Stadtrecht','das Lehen','die Brache','die Zunft'], h:'Der König oder ein Fürst verlieh es einer Stadt.', e:'Mit dem Stadtrecht wurde ein Ort zur Stadt.'},
+    {type:'mc', riddle:true, lv:3, q:'Ich bin ein Zehntel der Ernte und gehe an die Kirche. Wer bin ich?', o:['der Zehnt','das Lehen','die Allmende','der Kriegsdienst'], h:'Mein Name steckt schon in „ein Zehntel“.', e:'Der Zehnt war eine Abgabe an die Kirche.'}
+  ]
+};
+
+const PARTS = {
+  bergfried:{n:'Bergfried', nom:'der Bergfried', akk:'den Bergfried', d:'Der höchste Turm. Von hier sah man Feinde schon von weitem. Bei einem Angriff war er die letzte Zuflucht. Sein Eingang lag hoch oben.', hint:'Der Bergfried ist der höchste Turm der Burg.'},
+  palas:{n:'Palas', nom:'der Palas', akk:'den Palas', d:'Das Wohnhaus des Burgherrn. Hier gab es einen großen Saal für Feste und Gäste.', hint:'Der Palas ist ein großes Haus mit rotem Dach und großen Fenstern.'},
+  kapelle:{n:'Kapelle', nom:'die Kapelle', akk:'die Kapelle', d:'Eine kleine Kirche. Hier beteten die Menschen auf der Burg.', hint:'Die Kapelle hat ein Kreuz auf dem Dach.'},
+  torhaus:{n:'Torhaus', nom:'das Torhaus', akk:'das Torhaus', d:'Der Eingang zur Burg. Ein schweres Gitter konnte das Tor verschließen.', hint:'Das Torhaus steht in der Mitte der Mauer. Es hat ein großes Tor.'},
+  zugbruecke:{n:'Zugbrücke', nom:'die Zugbrücke', akk:'die Zugbrücke', d:'Eine Brücke über den Graben. Bei Gefahr zog man sie an Ketten hoch.', hint:'Die Zugbrücke führt über das Wasser zum Tor. Sie hängt an Ketten.'},
+  burggraben:{n:'Burggraben', nom:'der Burggraben', akk:'den Burggraben', d:'Ein tiefer Graben, hier mit Wasser. Feinde kamen schwer an die Mauer heran.', hint:'Der Burggraben ist mit Wasser gefüllt. Er liegt vor der Mauer.'},
+  ringmauer:{n:'Ringmauer', nom:'die Ringmauer', akk:'die Ringmauer', d:'Eine dicke Mauer rund um die Burg. Oben sind [[Zinnen]]. Dahinter liegt der [[Wehrgang]].', hint:'Die Ringmauer ist die lange Mauer mit den Zacken oben. Die Zacken heißen Zinnen.'},
+  brunnen:{n:'Brunnen', nom:'der Brunnen', akk:'den Brunnen', d:'Er lieferte Wasser – auch bei einer [[Belagerung]].', hint:'Der Brunnen steht im Burghof. Er hat ein kleines Dach.'}
+};
+const PART_ORDER = ['bergfried','palas','kapelle','torhaus','ringmauer','zugbruecke','burggraben','brunnen'];
+
+const GL = {
+  'Mittelalter':['Die Zeit von etwa 500 bis 1500 nach Christus.','pfalz'],
+  'Antike':['Die Zeit vor dem Mittelalter. Zum Beispiel die Zeit der alten Griechen und Römer.','pfalz'],
+  'Neuzeit':['Die Zeit nach dem Mittelalter, ab etwa 1500. Wir leben heute in der Neuzeit.','pfalz'],
+  'Stand':['Eine Gruppe in der Gesellschaft des Mittelalters. Man wurde in seinen Stand hineingeboren.','pfalz'],
+  'Geistliche':['Menschen, die für die Kirche arbeiten, zum Beispiel Priester, Mönche und Nonnen. Ein anderes Wort dafür ist Klerus.','pfalz'],
+  'Adel':['Vornehme Familien mit viel Land und Macht, zum Beispiel Könige, Fürsten und Ritter.','pfalz'],
+  'Fürst':['Ein sehr mächtiger Adliger, zum Beispiel ein Herzog oder ein Graf. Auch Bischöfe konnten Fürsten sein.','pfalz'],
+  'Lehen':['Land, das ein Herr verleiht. Das Wort kommt von „leihen“.','pfalz'],
+  'Vasall':['Jemand, der ein Lehen bekommt. Er verspricht dafür Treue und Kriegsdienst.','pfalz'],
+  'Lehnsherr':['Jemand, der ein Lehen verleiht. Er gibt dem Vasallen Land und Schutz.','pfalz'],
+  'Treue':['Man hält zu jemandem und hilft ihm, auch in schweren Zeiten.','pfalz'],
+  'Kriegsdienst':['Mit dem Herrn in den Krieg ziehen und für ihn kämpfen.','pfalz'],
+  'Kronvasall':['Ein Fürst, der sein Lehen direkt vom König bekommt.','pfalz'],
+  'Untervasall':['Ein Ritter, der sein Lehen von einem Fürsten bekommt.','pfalz'],
+  'Pfalz':['Ein großer Hof mit Palast. Hier wohnte der König, wenn er durch sein Reich reiste.','pfalz'],
+  'Kaiser':['Ein besonders mächtiger Herrscher. Der deutsche König wurde im Mittelalter oft auch zum Kaiser gekrönt.','pfalz'],
+  'Äbtissin':['Die Leiterin eines Frauenklosters.','pfalz'],
+  'Pfennig':['Eine kleine Silbermünze. Im Mittelalter war der Pfennig die wichtigste Münze.','pfalz'],
+  'Burg':['Wohnung und Festung eines Adligen.','burg'],
+  'Burgherr':['Der Adlige, dem die Burg gehört oder der auf ihr herrscht.','burg'],
+  'Höhenburg':['Eine Burg auf einem Berg oder Hügel.','burg'],
+  'Wasserburg':['Eine Burg, die von Wasser umgeben ist.','burg'],
+  'Bergfried':['Der höchste Turm einer Burg. Er war die letzte Zuflucht bei einem Angriff.','burg'],
+  'Palas':['Das Wohnhaus des Burgherrn mit einem großen Saal.','burg'],
+  'Zinnen':['Die Mauerzacken oben auf einer Mauer. Dahinter konnten sich die Verteidiger schützen.','burg'],
+  'Wehrgang':['Ein Gang oben auf der Mauer. Von hier aus verteidigte man die Burg.','burg'],
+  'Belagerung':['Feinde umzingeln eine Burg oder Stadt. Niemand kommt mehr hinein oder hinaus.','burg'],
+  'Kemenate':['Ein Raum in der Burg, den man heizen konnte.','burg'],
+  'Page':['Ein adliger Junge ab etwa 7 Jahren. Er lernt auf einer Burg gutes Benehmen.','burg'],
+  'Knappe':['Ein junger Adliger ab etwa 14 Jahren. Er dient einem Ritter und lernt kämpfen.','burg'],
+  'Ritterschlag':['Die Feier, bei der ein Knappe zum Ritter gemacht wird.','burg'],
+  'Turnier':['Ein Kampfspiel der Ritter, oft zu Pferd.','burg'],
+  'Wappen':['Ein Zeichen auf dem Schild. Daran erkannte man einen Ritter und seine Familie.','burg'],
+  'Grundherr':['Ein Adliger oder ein Kloster, dem das Land gehört. Die Bauern bewirtschaften es.','dorf'],
+  'Abgaben':['Was die Bauern dem Grundherrn geben mussten, zum Beispiel Getreide, Eier oder Hühner.','dorf'],
+  'Frondienst':['Arbeit ohne Lohn für den Grundherrn, zum Beispiel auf seinen Feldern.','dorf'],
+  'Zehnt':['Ein Zehntel der Ernte. Diese Abgabe bekam die Kirche.','dorf'],
+  'Hörige':['Unfreie Bauern. Sie waren an ihren Grundherrn gebunden und durften nicht einfach wegziehen.','dorf'],
+  'Wintergetreide':['Getreide, das man im Herbst sät, zum Beispiel Roggen oder Weizen.','dorf'],
+  'Sommergetreide':['Getreide, das man im Frühjahr sät, zum Beispiel Hafer oder Gerste.','dorf'],
+  'Brache':['Ein Feld, auf dem ein Jahr lang kein Getreide wächst. Der Boden erholt sich.','dorf'],
+  'Dreifelderwirtschaft':['Die Felder werden in drei Teile geteilt: Wintergetreide, Sommergetreide und Brache. Jedes Jahr wird gewechselt.','dorf'],
+  'Allmende':['Wiesen und Wald, die alle im Dorf gemeinsam nutzen.','dorf'],
+  'Stadtrecht':['Besondere Rechte einer Stadt, zum Beispiel Markt, Mauer, eigene Gerichte und Selbstverwaltung.','stadt'],
+  'Marktrecht':['Das Recht, einen Markt abzuhalten.','stadt'],
+  'Rat':['Eine Gruppe von Männern, die die Stadt regiert.','stadt'],
+  'Bürger':['Ein Einwohner der Stadt mit allen Rechten.','stadt'],
+  'Patrizier':['Reiche Kaufleute. Sie regierten die Stadt im Rat.','stadt'],
+  'Unterschicht':['Die armen Menschen in der Stadt, zum Beispiel Mägde, Knechte, Tagelöhner und Bettler.','stadt'],
+  'Tagelöhner':['Jemand, der nur für einen Tag Arbeit und Lohn bekommt.','stadt'],
+  'Zunft':['Eine Gruppe von Handwerkern mit dem gleichen Beruf.','stadt'],
+  'Zunftzwang':['Nur wer in der Zunft ist, darf das Handwerk in der Stadt ausüben.','stadt'],
+  'Gilde':['Eine Gruppe von Kaufleuten.','stadt'],
+  'Lehrling':['Ein Junge, der bei einem Meister ein Handwerk lernt.','stadt'],
+  'Geselle':['Ein Handwerker, der die Lehre beendet hat, aber noch kein Meister ist.','stadt'],
+  'Meister':['Ein Handwerker mit eigener Werkstatt. Er darf Lehrlinge ausbilden.','stadt'],
+  'Meisterstück':['Ein besonders gutes Werkstück. Damit zeigt ein Geselle, dass er Meister werden kann.','stadt'],
+  'Wanderschaft':['Gesellen ziehen von Stadt zu Stadt und lernen bei anderen Meistern.','stadt']
+};
+
+const SOL = [['W','S','B'],['S','B','W'],['B','W','S']];
+const CROPL = {W:'Wintergetreide', S:'Sommergetreide', B:'Brache'};
+const CROPS = {W:'Winter­getreide', S:'Sommer­getreide', B:'Brache'};
+const CROPD = {W:'Roggen, Weizen · Aussaat im Herbst', S:'Hafer, Gerste · Aussaat im Frühjahr', B:'Vieh weidet · Boden erholt sich'};
+
+const TYPE = {mc:'Auswahl', tf:'Stimmt das?', match:'Zuordnen', sort:'Sortieren', gap:'Lückentext', order:'Reihenfolge', hot:'Suchbild', grid:'Felder planen'};
+const HOW = {
+  mc:'Tippe auf die richtige Antwort.',
+  tf:'Entscheide bei jedem Satz: Stimmt er oder stimmt er nicht? Tippe dann auf „Prüfen“.',
+  match:'Tippe auf eine Karte aus dem Stapel. Tippe dann auf das passende Feld.',
+  sort:'Tippe auf eine Karte aus dem Stapel. Tippe dann auf die passende Gruppe.',
+  gap:'Tippe auf ein Wort aus dem Stapel. Tippe dann auf die passende Lücke.',
+  order:'Tippe die Karten der Reihe nach an. Falsch getippt? Tippe die Karte unten noch einmal an.',
+  hot:'Tippe in der Zeichnung auf den gesuchten Teil der Burg.',
+  grid:'Tippe auf ein Feld mit Fragezeichen. Jedes Tippen wechselt: Winter → Sommer → Brache.'
+};
+
+/* =========================================================
+   ICONS & ZEICHNUNGEN
+   ========================================================= */
+const IC = {
+  speaker:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  book:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3.5 5.5c2.5-1 5.5-1 8.5.8 3-1.8 6-1.8 8.5-.8V19c-2.5-1-5.5-1-8.5.8-3-1.8-6-1.8-8.5-.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 6.3v13.5" stroke="currentColor" stroke-width="1.8"/></svg>',
+  scroll:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 6a2 2 0 1 1 4 0v1H5M9 10h6M9 13.5h6M9 17h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  menu:'<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  help:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.3 9.2a2.8 2.8 0 1 1 3.9 2.6c-.8.4-1.2 1-1.2 1.9v.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17.3" r="1.2" fill="currentColor"/></svg>',
+  info:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.2" fill="currentColor"/></svg>',
+  arrowR:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  arrowL:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  down:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 4v15M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  up:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 20V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  right:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  check:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  cross:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>',
+  coin:'<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#D7DADF" stroke="#8E949C" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#9AA0A8" stroke-width="1"/><path d="M12 7.2v9.6M7.2 12h9.6" stroke="#5F656D" stroke-width="2.2"/><circle cx="9.3" cy="9.3" r=".9" fill="#5F656D"/><circle cx="14.7" cy="9.3" r=".9" fill="#5F656D"/><circle cx="9.3" cy="14.7" r=".9" fill="#5F656D"/><circle cx="14.7" cy="14.7" r=".9" fill="#5F656D"/></svg>',
+  crown:'<svg viewBox="0 0 40 40" width="34" height="34" aria-hidden="true"><path d="M7 29 L5 12 L13 19 L20 7 L27 19 L35 12 L33 29 Z" fill="#E8C664" stroke="#B8892A" stroke-width="1.6" stroke-linejoin="round"/><rect x="7" y="30.5" width="26" height="4" rx="1" fill="#E8C664" stroke="#B8892A" stroke-width="1.4"/><circle cx="20" cy="22" r="2.4" fill="#AF2519"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="currentColor"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>'
+};
+const starSVG = on => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.3L12 17.1l-5.7 3.1 1.2-6.3-4.7-4.4 6.4-.8z" fill="${on?'currentColor':'none'}" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+const stars = (n, max=3) => `<span class="stars" aria-label="${n} von ${max} Sternen">${[...Array(max)].map((_,i)=>starSVG(i<n)).join('')}</span>`;
+
+const EMBLEM = {
+  pfalz:'<path d="M9 29.5 V19 L20 10.5 L31 19 V29.5 Z" fill="#6A100D"/><path d="M12.2 29.5V24.6a2.5 2.5 0 0 1 5 0v4.9zM17.5 29.5V24.6a2.5 2.5 0 0 1 5 0v4.9zM22.8 29.5V24.6a2.5 2.5 0 0 1 5 0v4.9z" fill="#C8453A"/>',
+  burg:'<path d="M13 30.5V15h1.5v-3.6H17V15h1.8v-3.6h2.4V15H23v-3.6h2.5V15H27v15.5z" fill="#6A100D"/><path d="M18 30.5v-4.8a2 2 0 0 1 4 0v4.8z" fill="#C8453A"/>',
+  dorf:'<path d="M20 31V11" stroke="#6A100D" stroke-width="1.8" stroke-linecap="round"/><g fill="#6A100D"><ellipse cx="17.3" cy="14" rx="1.9" ry="3.4" transform="rotate(-28 17.3 14)"/><ellipse cx="22.7" cy="14" rx="1.9" ry="3.4" transform="rotate(28 22.7 14)"/><ellipse cx="17.3" cy="18.7" rx="1.9" ry="3.4" transform="rotate(-28 17.3 18.7)"/><ellipse cx="22.7" cy="18.7" rx="1.9" ry="3.4" transform="rotate(28 22.7 18.7)"/><ellipse cx="17.3" cy="23.4" rx="1.9" ry="3.4" transform="rotate(-28 17.3 23.4)"/><ellipse cx="22.7" cy="23.4" rx="1.9" ry="3.4" transform="rotate(28 22.7 23.4)"/><ellipse cx="20" cy="9.6" rx="1.8" ry="3"/></g>',
+  stadt:'<path d="M8 30.5V17h2v-2.6h2.5V17h2v3.4h11V17h2v-2.6H30V17h2v13.5z" fill="#6A100D"/><path d="M16.5 30.5v-5a3.5 3.5 0 0 1 7 0v5z" fill="#C8453A"/>',
+  finale:'<path d="M10 27.5 L8.6 15 L15 20 L20 11.5 L25 20 L31.4 15 L30 27.5 Z" fill="#6E4C0C"/><rect x="10" y="28.6" width="20" height="3" rx=".8" fill="#6E4C0C"/>'
+};
+function seal(kind, cls='', earned=true){
+  let seed = {pfalz:3,burg:7,dorf:11,stadt:13,finale:17}[kind]||5;
+  const rnd = () => { seed = (seed*9301+49297)%233280; return seed/233280; };
+  const N=28, pts=[];
+  for(let i=0;i<N;i++){ const a=i/N*Math.PI*2; const r=18.3+(rnd()-.5)*2.4; pts.push([20+r*Math.cos(a),20+r*Math.sin(a)]); }
+  const mid=(a,b)=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+  const m0=mid(pts[N-1],pts[0]); let d=`M${m0[0].toFixed(1)} ${m0[1].toFixed(1)}`;
+  for(let i=0;i<N;i++){ const p=pts[i], m=mid(p,pts[(i+1)%N]); d+=` Q${p[0].toFixed(1)} ${p[1].toFixed(1)} ${m[0].toFixed(1)} ${m[1].toFixed(1)}`; }
+  d+='Z';
+  if(!earned) return `<svg viewBox="0 0 40 40" class="${cls}" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#B9A77C" stroke-width="1.5" stroke-dasharray="3 3"/><g opacity=".18">${EMBLEM[kind]}</g></svg>`;
+  const grad = kind==='finale' ? 'waxgold' : 'wax';
+  return `<svg viewBox="0 0 40 40" class="${cls}" aria-hidden="true"><path d="${d}" fill="url(#${grad})"/><circle cx="20" cy="20" r="13.6" fill="none" stroke="rgba(255,225,205,.35)" stroke-width="1.2"/>${EMBLEM[kind]}</svg>`;
+}
+function shield(nr, col, onDark){
+  return `<svg viewBox="0 0 40 46" width="44" height="50" aria-hidden="true"><path d="M3 3H37V20C37 33 28 40 20 43 12 40 3 33 3 20Z" fill="${onDark?'#F6EFDD':col}" stroke="#E8C664" stroke-width="2.5"/><text x="20" y="28" text-anchor="middle" style="font-family:var(--display);font-weight:700;font-size:21px" fill="${onDark?col:'#F6EFDD'}">${nr}</text></svg>`;
+}
+function avatar(kind){
+  const A = {
+    pfalz:{skin:'#EBC7A1', robe:'#6B2C6F', hat:'<path d="M25 31 Q26 16 40 15 Q54 16 55 31 Q48 25 40 25 Q32 25 25 31Z" fill="#3B2D4F"/><path d="M24 31 Q40 26 56 31" stroke="#E8C664" stroke-width="2" fill="none"/>'},
+    burg:{skin:'#C8906A', robe:'#A5261C', hat:'<path d="M26 35 Q25 20 40 20 Q55 20 54 35 Q52 27 40 26 Q28 27 26 35Z" fill="#4A3322"/>'},
+    dorf:{skin:'#F0CFAE', robe:'#3A7132', hat:'<path d="M23 44 Q21 17 40 17 Q59 17 57 44 Q55 29 40 27 Q25 29 23 44Z" fill="#F7F2E4" stroke="#CFC4A8" stroke-width="1.5"/>'},
+    stadt:{skin:'#A8714F', robe:'#28559F', hat:'<path d="M22 47 Q19 15 40 15 Q61 15 58 47 Q55 30 40 28 Q25 30 22 47Z" fill="#1F3E75"/><path d="M27 20 Q40 12 53 20" stroke="#E8C664" stroke-width="2" fill="none"/>'},
+    finale:{skin:'#E6BE96', robe:'#6B2C6F', hat:'<path d="M27 33 Q27 22 40 22 Q53 22 53 33 Q50 28 40 28 Q30 28 27 33Z" fill="#8A5A2B"/><path d="M28 25 L27 12 L33 18 L40 9 L47 18 L53 12 L52 25 Z" fill="#E8C664" stroke="#B8892A" stroke-width="1.5" stroke-linejoin="round"/><circle cx="40" cy="19" r="2" fill="#AF2519"/>'}
+  }[kind];
+  return `<svg viewBox="0 0 80 80" width="100%" height="100%" aria-hidden="true"><rect width="80" height="80" fill="#EDE3C9"/><path d="M12 82 C14 60 27 53 40 53 C53 53 66 60 68 82Z" fill="${A.robe}"/><rect x="36" y="44" width="8" height="10" fill="${A.skin}"/><circle cx="40" cy="36" r="13.5" fill="${A.skin}"/><circle cx="35.3" cy="36" r="1.6" fill="#2A2019"/><circle cx="44.7" cy="36" r="1.6" fill="#2A2019"/><path d="M35.5 41.5 Q40 45 44.5 41.5" fill="none" stroke="#2A2019" stroke-width="1.6" stroke-linecap="round"/>${A.hat}</svg>`;
+}
+
+/* Burg-Zeichnung */
+const LABELPOS = {bergfried:[140,22],kapelle:[219,82],palas:[430,48],torhaus:[300,180],ringmauer:[150,292],brunnen:[385,232],burggraben:[120,337],zugbruecke:[425,337]};
+function castle(mode){
+  const c = mode==='task' ? S.run.cur : null;
+  const found = c ? c.found : [];
+  const sel = mode==='explore' ? ui.burgSel : null;
+  const help = c && c.show ? c.targets[c.step] : null;
+  const pa = p => { const a = mode==='explore'?'explore':'part'; const cls=['part', sel===p?'sel':'', found.includes(p)?'found':'', help===p?'help':''].join(' '); const lab = mode==='explore' ? PARTS[p].n : 'Teil der Burg'; return `class="${cls}" data-a="${a}" data-p="${p}" data-k="${mode}-${p}" role="button" tabindex="0" aria-label="${lab}"`; };
+  const merlons = (x1,x2,y,w,step) => { let s=''; for(let x=x1;x<=x2-w+0.01;x+=step) s+=`<rect x="${x.toFixed(1)}" y="${y}" width="${w}" height="12" fill="#BFB39A" stroke="#6B6150" stroke-width="1.5"/>`; return s; };
+  const label = p => { const [x,y]=LABELPOS[p]; const t=PARTS[p].n; const w=t.length*10.2+24; const st = mode==='task' ? 'ok' : (sel===p?'on':''); return `<g class="plabel ${st}" pointer-events="none"><rect x="${(x-w/2).toFixed(1)}" y="${y-14}" width="${w.toFixed(1)}" height="28" rx="14"/><text x="${x}" y="${y+6}" text-anchor="middle">${t}</text></g>`; };
+  const labels = (mode==='explore' ? PART_ORDER : found).map(label).join('');
+  return `<svg viewBox="0 0 600 390" class="castle" role="group" aria-label="Zeichnung einer Burg">
+  <rect width="600" height="390" fill="#E7DDC2"/>
+  <path d="M0 250 Q120 196 240 238 T480 222 T600 236 V390 H0Z" fill="#CFCB9F" opacity=".7"/>
+  <rect x="0" y="300" width="600" height="90" fill="#9DAA6A"/>
+  <polygon points="90,200 510,200 548,262 52,262" fill="#CFC19D" stroke="#A8996F" stroke-width="1.5"/>
+  <g ${pa('burggraben')}><g class="shape"><rect x="16" y="318" width="568" height="36" fill="#6D93BA"/><path d="M40 332 q10 -5 20 0 t20 0 M120 342 q10 -5 20 0 t20 0 M200 330 q10 -5 20 0 t20 0 M380 334 q10 -5 20 0 t20 0 M470 343 q10 -5 20 0 t20 0 M530 330 q10 -5 20 0 t20 0" fill="none" stroke="#A9C4DE" stroke-width="2"/></g><rect class="hl" x="12" y="314" width="576" height="44" rx="6"/></g>
+  <g ${pa('bergfried')}><g class="shape"><rect x="108" y="52" width="64" height="164" fill="#BFB39A" stroke="#6B6150" stroke-width="2"/>${merlons(108,172,40,10,13.5)}<rect x="137" y="80" width="6" height="20" rx="3" fill="#3A2E24"/><rect x="137" y="122" width="6" height="18" rx="3" fill="#3A2E24"/><path d="M132 190 V176 a8 8 0 0 1 16 0 V190Z" fill="#3A2E24"/><path d="M108 100 H172 M108 150 H172" stroke="#A89C82" stroke-width="1"/></g><rect class="hl" x="100" y="32" width="80" height="186" rx="6"/></g>
+  <g ${pa('kapelle')}><g class="shape"><rect x="190" y="152" width="58" height="62" fill="#D9CEB3" stroke="#6B6150" stroke-width="2"/><polygon points="184,154 219,120 254,154" fill="#8C3B2A" stroke="#5A2A1D" stroke-width="2" stroke-linejoin="round"/><path d="M219 98 V118 M211 106 H227" stroke="#5A4B3B" stroke-width="3" stroke-linecap="round"/><circle cx="219" cy="176" r="8" fill="#4F6FA0" stroke="#5A4B3B" stroke-width="1.5"/><path d="M211 214 V202 a8 8 0 0 1 16 0 V214Z" fill="#3A2E24"/></g><rect class="hl" x="180" y="92" width="78" height="124" rx="6"/></g>
+  <g ${pa('palas')}><g class="shape"><rect x="350" y="112" width="160" height="100" fill="#D3C7AA" stroke="#6B6150" stroke-width="2"/><polygon points="342,114 430,66 518,114" fill="#8C3B2A" stroke="#5A2A1D" stroke-width="2" stroke-linejoin="round"/>${[368,418,468].map(x=>`<path d="M${x} 172 V148 a12 12 0 0 1 24 0 V172Z" fill="#3E4A63"/><path d="M${x+12} 140 V172" stroke="#D3C7AA" stroke-width="2.5"/>`).join('')}<path d="M350 184 H510" stroke="#A89C82" stroke-width="1"/></g><rect class="hl" x="340" y="60" width="180" height="156" rx="6"/></g>
+  <g ${pa('ringmauer')}><g class="shape"><rect x="40" y="262" width="520" height="56" fill="#BFB39A" stroke="#6B6150" stroke-width="2"/>${merlons(40,262,250,12,20)}${merlons(340,560,250,12,20)}<path d="M40 280 H262 M338 280 H560 M40 299 H262 M338 299 H560" stroke="#A89C82" stroke-width="1"/><rect x="24" y="232" width="50" height="86" fill="#C6BAA1" stroke="#6B6150" stroke-width="2"/>${merlons(24,74,220,10,13.3)}<rect x="526" y="232" width="50" height="86" fill="#C6BAA1" stroke="#6B6150" stroke-width="2"/>${merlons(526,576,220,10,13.3)}<rect x="46" y="256" width="6" height="16" rx="3" fill="#3A2E24"/><rect x="548" y="256" width="6" height="16" rx="3" fill="#3A2E24"/></g><rect class="hl" x="18" y="214" width="564" height="108" rx="6"/></g>
+  <g ${pa('brunnen')}><g class="shape"><rect x="438" y="205" width="4" height="23" fill="#6B4E2E"/><rect x="468" y="205" width="4" height="23" fill="#6B4E2E"/><polygon points="430,207 455,190 480,207" fill="#8C3B2A" stroke="#5A2A1D" stroke-width="1.5" stroke-linejoin="round"/><path d="M455 207 V218" stroke="#3A2E24" stroke-width="1.2"/><rect x="451" y="218" width="8" height="7" fill="#6B4E2E"/><rect x="433" y="226" width="44" height="16" rx="2" fill="#A69B84" stroke="#6B6150" stroke-width="1.5"/><ellipse cx="455" cy="226" rx="22" ry="4.5" fill="#5D6F86" stroke="#6B6150" stroke-width="1.2"/></g><rect x="424" y="184" width="62" height="64" fill="transparent"/><rect class="hl" x="424" y="184" width="62" height="64" rx="6"/></g>
+  <g ${pa('torhaus')}><g class="shape"><rect x="262" y="206" width="76" height="112" fill="#C8BDA4" stroke="#6B6150" stroke-width="2"/>${merlons(262,338,194,12,16)}<path d="M282 318 V284 a18 18 0 0 1 36 0 V318Z" fill="#3A2E24"/><path d="M288 272 V318 M296 267 V318 M304 267 V318 M312 272 V318 M284 290 H316 M282 304 H318" stroke="#8B7B64" stroke-width="2"/><rect x="293" y="222" width="14" height="18" rx="7" fill="#3A2E24"/></g><rect class="hl" x="254" y="184" width="92" height="138" rx="6"/></g>
+  <g ${pa('zugbruecke')}><g class="shape"><polygon points="282,318 318,318 330,356 270,356" fill="#8A6238" stroke="#5A3E22" stroke-width="2" stroke-linejoin="round"/><path d="M279 328 H321 M276 338 H324 M273 347 H327" stroke="#5A3E22" stroke-width="1.5"/><path d="M280 276 L271 354 M320 276 L329 354" stroke="#3F3F3F" stroke-width="2" stroke-dasharray="4 2"/></g><rect x="262" y="316" width="76" height="44" fill="transparent"/><rect class="hl" x="262" y="316" width="76" height="44" rx="6"/></g>
+  ${labels}
+</svg>`;
+}
+
+/* Karte */
+function mapSVG(){
+  const P = {pfalz:[160,140], burg:[630,128], dorf:[590,385], stadt:[180,385]};
+  const legs = ['M160,140 C300,80 480,190 630,128','M630,128 C700,230 540,280 590,385','M590,385 C470,450 320,330 180,385'];
+  const finLeg = 'M180,385 C80,320 80,220 160,140';
+  const trees = [[330,215],[362,200],[398,212],[436,226],[346,246],[382,240],[420,254],[458,246],[306,238],[474,212],[262,58],[292,48],[324,60],[520,62],[488,292],[258,300],[716,296],[748,268],[44,300],[56,332],[750,90],[40,200]];
+  const tree = ([x,y]) => `<g><rect x="${x-2}" y="${y}" width="4" height="12" fill="#6B4E2E"/><circle cx="${x}" cy="${y-4}" r="11" fill="#5D7C45"/><circle cx="${x-5}" cy="${y+1}" r="7" fill="#6E8F53"/></g>`;
+  const icons = {
+    pfalz:`<ellipse cx="0" cy="42" rx="72" ry="9" fill="#000" opacity=".12"/><rect x="-62" y="-6" width="92" height="46" fill="#E4D8BC" stroke="#4E4034" stroke-width="2"/><polygon points="-68,-6 -16,-34 36,-6" fill="#6B2C6F" stroke="#4E4034" stroke-width="2" stroke-linejoin="round"/>${[0,1,2,3].map(i=>`<path d="M${-55+i*21} 34 V18 a6 6 0 0 1 12 0 V34Z" fill="#4E4034"/>`).join('')}<rect x="30" y="-44" width="30" height="84" fill="#DCCFB1" stroke="#4E4034" stroke-width="2"/><polygon points="26,-44 45,-72 64,-44" fill="#6B2C6F" stroke="#4E4034" stroke-width="2" stroke-linejoin="round"/><rect x="41" y="-30" width="8" height="14" rx="4" fill="#4E4034"/><path d="M45 -72 V-96" stroke="#4E4034" stroke-width="2"/><path d="M45 -96 L70 -89 L45 -82Z" fill="#E8C664" stroke="#B8892A" stroke-width="1.5"/>`,
+    burg:`<ellipse cx="0" cy="44" rx="74" ry="9" fill="#000" opacity=".12"/><rect x="-52" y="-4" width="104" height="44" fill="#C7BCA3" stroke="#4E4034" stroke-width="2"/>${[-52,-36,-20,-4,12,28].map(x=>`<rect x="${x}" y="-13" width="9" height="9" fill="#C7BCA3" stroke="#4E4034" stroke-width="1.5"/>`).join('')}<rect x="-66" y="-38" width="28" height="78" fill="#D2C7AE" stroke="#4E4034" stroke-width="2"/>${[-66,-56.5,-47].map(x=>`<rect x="${x}" y="-47" width="8.5" height="9" fill="#D2C7AE" stroke="#4E4034" stroke-width="1.5"/>`).join('')}<rect x="38" y="-54" width="28" height="94" fill="#D2C7AE" stroke="#4E4034" stroke-width="2"/>${[38,47.5,57].map(x=>`<rect x="${x}" y="-63" width="8.5" height="9" fill="#D2C7AE" stroke="#4E4034" stroke-width="1.5"/>`).join('')}<path d="M-10 40 V24 a10 10 0 0 1 20 0 V40Z" fill="#4E4034"/><rect x="-54" y="-24" width="5" height="12" rx="2.5" fill="#4E4034"/><rect x="50" y="-38" width="5" height="12" rx="2.5" fill="#4E4034"/><path d="M52 -63 V-88" stroke="#4E4034" stroke-width="2"/><path d="M52 -88 L77 -81 L52 -74Z" fill="#A5261C" stroke="#6E120E" stroke-width="1.5"/>`,
+    dorf:`<ellipse cx="4" cy="40" rx="78" ry="9" fill="#000" opacity=".12"/><rect x="-62" y="6" width="42" height="30" fill="#D9C49D" stroke="#4E4034" stroke-width="2"/><polygon points="-68,8 -41,-16 -14,8" fill="#C9A55A" stroke="#8A6D3B" stroke-width="2" stroke-linejoin="round"/><rect x="-46" y="20" width="9" height="16" fill="#4E4034"/><rect x="-10" y="-4" width="46" height="40" fill="#E0CCA5" stroke="#4E4034" stroke-width="2"/><polygon points="-17,-2 13,-32 43,-2" fill="#C9A55A" stroke="#8A6D3B" stroke-width="2" stroke-linejoin="round"/><rect x="8" y="16" width="10" height="20" fill="#4E4034"/><rect x="-4" y="6" width="8" height="7" fill="#4E4034"/><rect x="46" y="10" width="36" height="26" fill="#D9C49D" stroke="#4E4034" stroke-width="2"/><polygon points="40,12 64,-10 88,12" fill="#C9A55A" stroke="#8A6D3B" stroke-width="2" stroke-linejoin="round"/><rect x="60" y="22" width="8" height="14" fill="#4E4034"/><path d="M-70 38 H90" stroke="#8A6D3B" stroke-width="2"/>`,
+    stadt:`<ellipse cx="0" cy="44" rx="78" ry="9" fill="#000" opacity=".12"/><rect x="8" y="-40" width="26" height="40" fill="#DCCFB1" stroke="#4E4034" stroke-width="2"/><polygon points="6,-40 21,-88 36,-40" fill="#28559F" stroke="#1A3A70" stroke-width="2" stroke-linejoin="round"/><path d="M21 -88 V-100 M16 -95 H26" stroke="#4E4034" stroke-width="2.4" stroke-linecap="round"/><polygon points="-52,-4 -40,-22 -28,-4" fill="#A5261C" stroke="#6E120E" stroke-width="1.5"/><polygon points="-30,-4 -17,-26 -4,-4" fill="#B5462E" stroke="#6E120E" stroke-width="1.5"/><polygon points="38,-4 50,-20 62,-4" fill="#A5261C" stroke="#6E120E" stroke-width="1.5"/><rect x="-68" y="-4" width="136" height="44" fill="#C7BCA3" stroke="#4E4034" stroke-width="2"/>${[-68,-52,-36,20,36,52].map(x=>`<rect x="${x}" y="-13" width="9" height="9" fill="#C7BCA3" stroke="#4E4034" stroke-width="1.5"/>`).join('')}<rect x="-16" y="-30" width="32" height="70" fill="#D2C7AE" stroke="#4E4034" stroke-width="2"/>${[-16,-5,6].map(x=>`<rect x="${x}" y="-39" width="10" height="9" fill="#D2C7AE" stroke="#4E4034" stroke-width="1.5"/>`).join('')}<path d="M-9 40 V24 a9 9 0 0 1 18 0 V40Z" fill="#4E4034"/><path d="M0 -39 V-60" stroke="#4E4034" stroke-width="2"/><path d="M0 -60 L22 -54 L0 -47Z" fill="#E8C664" stroke="#B8892A" stroke-width="1.5"/>`
+  };
+  const nextId = SIDS.find((id,i)=>unlocked(i) && !S.stations[id]?.done);
+  const loc = (st, i) => {
+    const [x,y] = P[st.id]; const open = unlocked(i); const done = !!S.stations[st.id]?.done; const isNext = st.id===nextId;
+    const status = done ? 'geschafft' : open ? 'offen' : 'gesperrt';
+    const hw = Math.max(80, Math.round(st.name.length*7.2+36));
+    const so = st.id==='pfalz' ? [-104,-100] : [36,-102];
+    return `<g class="loc ${open?'':'locked'}" ${open?`data-a="go" data-s="${st.id}"`:''} data-k="map-${st.id}" role="button" tabindex="0" aria-label="Ort ${st.nr}: ${st.name}, ${status}">
+      <rect x="${x-92}" y="${y-104}" width="184" height="196" fill="transparent"/>
+      ${isNext?`<circle class="pulse" cx="${x}" cy="${y-8}" r="82"/>`:''}
+      <circle class="focusring" cx="${x}" cy="${y-8}" r="92"/>
+      <g transform="translate(${x},${y})"><g class="icon">${icons[st.id]}</g></g>
+      <g transform="translate(${x},${y+66})"><path d="M${-hw} -17 H${hw} L${hw-9} 0 L${hw} 17 H${-hw} L${-hw+9} 0Z" fill="#F6EFDD" stroke="${st.col}" stroke-width="2.5"/><circle cx="${-hw}" cy="0" r="17" fill="${st.col}" stroke="#F6EFDD" stroke-width="2"/><text x="${-hw}" y="6" text-anchor="middle" class="m-nr">${st.nr}</text><text x="8" y="8" text-anchor="middle" class="m-name">${st.name}</text></g>
+      ${done?`<svg x="${x+so[0]}" y="${y+so[1]}" width="50" height="50" viewBox="0 0 40 40">${seal(st.id).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'')}</svg>`:''}
+      ${!open?`<g transform="translate(${x+58},${y-62})"><circle r="18" fill="#2A2019" opacity=".8"/><rect x="-7" y="-3" width="14" height="11" rx="2" fill="#F6EFDD"/><path d="M-4.5 -3 V-7 a4.5 4.5 0 0 1 9 0 V-3" fill="none" stroke="#F6EFDD" stroke-width="2.4"/></g>`:''}
+    </g>`;
+  };
+  const fu = finUnlocked();
+  const finBadge = `<g class="loc ${fu?'':'locked'}" ${fu?'data-a="go" data-s="finale"':''} data-k="map-finale" role="button" tabindex="0" aria-label="Prüfung beim König, ${fu?(S.fin?.done?'geschafft':'offen'):'gesperrt'}">
+      <rect x="54" y="226" width="96" height="104" fill="transparent"/>
+      ${fu && !S.fin?.done?`<circle class="pulse" cx="102" cy="266" r="36"/>`:''}
+      <circle class="focusring" cx="102" cy="266" r="42"/>
+      <circle cx="102" cy="266" r="27" fill="#7A5410" stroke="#E8C664" stroke-width="3"/>
+      <path d="M88 276 L86 257 L95 264 L102 252 L109 264 L118 257 L116 276Z" fill="#E8C664" stroke="#B8892A" stroke-width="1.2" stroke-linejoin="round"/>
+      <rect x="62" y="298" width="80" height="24" rx="12" fill="#F6EFDD" stroke="#7A5410" stroke-width="2"/><text x="102" y="315" text-anchor="middle" class="m-small">Prüfung</text>
+    </g>`;
+  return `<svg viewBox="0 0 800 520" class="map" role="group" aria-label="Karte des Reiches mit vier Orten">
+    <rect width="800" height="520" fill="#EEE4C8"/>
+    <g clip-path="url(#mapclip)">
+      <path d="M800 462 C720 432 650 500 530 476 S340 432 262 456 S112 470 0 442" fill="none" stroke="#7FA2C6" stroke-width="26" stroke-linecap="round"/>
+      <path d="M800 462 C720 432 650 500 530 476 S340 432 262 456 S112 470 0 442" fill="none" stroke="#A9C4DE" stroke-width="8" opacity=".8"/>
+      <path d="M505 225 C545 150 585 88 640 80 C700 74 752 130 792 225Z" fill="#C3C392"/>
+      <path d="M-10 250 Q60 196 140 252Z M250 118 Q300 80 360 116Z M700 250 Q760 210 810 250Z" fill="#CFCC9E"/>
+      <polygon points="662,335 772,325 774,352 664,362" fill="url(#fW)" stroke="#8A6D3B" stroke-width="1.2"/>
+      <polygon points="664,362 774,352 776,379 666,389" fill="url(#fS)" stroke="#8A6D3B" stroke-width="1.2"/>
+      <polygon points="666,389 776,379 778,406 668,416" fill="url(#fB)" stroke="#8A6D3B" stroke-width="1.2"/>
+      ${trees.map(tree).join('')}
+      ${legs.map(d=>`<path d="${d}" fill="none" stroke="#7A5C34" stroke-width="5" stroke-dasharray="1 12" stroke-linecap="round"/>`).join('')}
+      <path d="${finLeg}" fill="none" stroke="${fu?'#B8892A':'#7A5C34'}" stroke-width="5" stroke-dasharray="1 12" stroke-linecap="round" opacity="${fu?1:.35}"/>
+    </g>
+    <rect x="10" y="10" width="780" height="500" rx="6" fill="none" stroke="#AF2519" stroke-opacity=".5" stroke-width="2"/>
+    <rect x="16" y="16" width="768" height="488" rx="4" fill="none" stroke="#B8892A" stroke-opacity=".6" stroke-width="1.5"/>
+    ${finBadge}
+    ${STATIONS.map(loc).join('')}
+  </svg>`;
+}
+
+/* Abbildungen auf den Infokarten */
+function fig(name){
+  const X = y => (y/2100*100).toFixed(2)+'%';
+  switch(name){
+    case 'timeline': return `<figure class="fig tl"><div class="tl-marks"><span class="tl-pin" style="left:${X(1200)}"><b>1200</b> – deine Reise</span><span class="tl-pin end" style="left:${X(2026)}"><b>heute</b></span></div><div class="tl-bar"><span class="seg ant" style="left:0;width:${X(500)}">Antike</span><span class="seg ma" style="left:${X(500)};width:${X(1000)}">Mittelalter</span><span class="seg nz" style="left:${X(1500)};width:${X(600)}">Neuzeit</span></div><div class="tl-ticks">${[500,1000,1500,2000].map(y=>`<span style="left:${X(y)}">${y}</span>`).join('')}</div><figcaption>Zeitstrahl in Jahren nach Christus. Die Antike beginnt schon lange vor Christi Geburt.</figcaption></figure>`;
+    case 'staende': return `<figure class="fig"><div class="pyr"><div class="pyr-row" style="--w:38%"><div class="tier t-king"><b>König</b><small>gehört zum Adel</small></div></div><div class="pyr-row" style="--w:72%"><div class="tier t-geist"><b>Geistliche</b><small>beten</small></div><div class="tier t-adel"><b>Adel</b><small>schützen</small></div></div><div class="pyr-row" style="--w:100%"><div class="tier t-bauer"><b>Bauern</b><small>arbeiten · etwa 9 von 10 Menschen</small></div></div></div><figcaption>Die Ständeordnung im Mittelalter</figcaption></figure>`;
+    case 'lehns': { const ar=(d,u)=>`<div class="lh-ar"><span class="d">${IC.down} ${d}</span><span class="u">${IC.up} ${u}</span></div>`; return `<figure class="fig"><div class="lehn"><div class="lh-t" style="--w:44%"><b>König</b><small>Lehnsherr</small></div>${ar('Lehen und Schutz','Treue und Kriegsdienst')}<div class="lh-t" style="--w:66%"><b>Fürsten</b><small>${S.level>=3?'Kronvasallen: ':''}Herzöge, Grafen, Bischöfe</small></div>${ar('Lehen und Schutz','Treue und Kriegsdienst')}<div class="lh-t" style="--w:84%"><b>Ritter</b><small>${S.level>=3?'Untervasallen':'Vasallen der Fürsten'}</small></div>${ar('Schutz','Abgaben und Frondienst')}<div class="lh-t base" style="--w:100%"><b>Bauern</b><small>arbeiten auf dem Land – mehr dazu im Dorf</small></div></div><figcaption>Die Lehnspyramide</figcaption></figure>`; }
+    case 'burg': { const s=ui.burgSel; return `<figure class="fig"><div class="castlebox">${castle('explore')}</div><div class="partinfo" aria-live="polite">${s?`<b>${PARTS[s].n}</b><p>${md(PARTS[s].d)}</p>`:'<p>Tippe auf einen Teil der Burg oder unten auf einen Namen.</p>'}</div><div class="partchips">${PART_ORDER.map(p=>`<button type="button" class="pchip ${s===p?'on':''}" data-a="explore" data-p="${p}" data-k="pc-${p}" aria-pressed="${s===p}">${PARTS[p].n}</button>`).join('')}</div></figure>`; }
+    case 'ritter': { const st=[['7','Page','Er lebt auf der Burg eines anderen Adligen. Er lernt gutes Benehmen und Reiten. Er bedient bei Tisch.'],['14','Knappe','Er dient einem Ritter. Er lernt, mit Schwert und Lanze zu kämpfen.'],['21','Ritter','Beim [[Ritterschlag]] wird er feierlich zum Ritter gemacht.']]; return `<figure class="fig"><ol class="path">${st.map(s=>`<li><div class="age"><small>etwa</small><b>${s[0]}</b><small>Jahre</small></div><div><b class="pt">${s[1]}</b><p>${md(s[2])}</p></div></li>`).join('')}</ol><figcaption>Vom Pagen zum Ritter. Die Altersangaben sind ungefähre Werte.</figcaption></figure>`; }
+    case 'handwerk': { const st=[['1','Lehrling','Er lernt einige Jahre bei einem Meister. Oft wohnt er im Haus des Meisters.'],['2','Geselle','Er hat die Lehre beendet. Oft wandert er von Stadt zu Stadt und lernt bei anderen Meistern ([[Wanderschaft]]).'],['3','Meister','Er fertigt ein [[Meisterstück]]. Dann darf er eine eigene Werkstatt führen und Lehrlinge ausbilden.']]; return `<figure class="fig"><ol class="path">${st.map(s=>`<li><div class="age"><small>Stufe</small><b>${s[0]}</b></div><div><b class="pt">${s[1]}</b><p>${md(s[2])}</p></div></li>`).join('')}</ol><figcaption>Die drei Stufen im Handwerk</figcaption></figure>`; }
+    case 'grund': return `<figure class="fig"><div class="gh"><div class="gh-box herr"><b>Grundherr</b><small>Adliger oder Kloster</small></div><div class="gh-mid"><span class="d">${IC.down} gibt Land und Schutz</span><span class="u">${IC.up} bekommt Abgaben und Frondienst</span></div><div class="gh-row"><div class="gh-box bauern"><b>Bauern</b><small>bewirtschaften das Land</small></div><span class="gh-side">Zehnt ${IC.right}</span><div class="gh-box kirche"><b>Kirche</b></div></div></div><figcaption>Die Grundherrschaft</figcaption></figure>`;
+    case 'dreifeld': { const y=ui.dfYear; return `<figure class="fig"><div class="df-years" role="group" aria-label="Jahr wählen">${[0,1,2].map(i=>`<button type="button" class="yb ${i===y?'on':''}" data-a="df" data-y="${i}" data-k="df-${i}" aria-pressed="${i===y}">Jahr ${i+1}</button>`).join('')}</div><div class="df-fields">${[0,1,2].map(f=>{ const k=SOL[f][y]; return `<div class="fld crop ${k}"><span class="fld-n">Feld ${'ABC'[f]}</span><span class="fld-c"><b>${CROPL[k]}</b><small>${CROPD[k]}</small></span></div>`; }).join('')}</div><figcaption>Tippe auf „Jahr 2“ und „Jahr 3“. So wechseln die Felder.</figcaption></figure>`; }
+    case 'rechte': { const icon={
+        markt:'<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 14 L9 6 H31 L35 14Z" fill="#AF2519"/><path d="M5 14 q3.75 4 7.5 0 q3.75 4 7.5 0 q3.75 4 7.5 0 q3.75 4 7.5 0" fill="#F6EFDD" stroke="#AF2519" stroke-width="1.5"/><path d="M8 17 V34 M32 17 V34" stroke="currentColor" stroke-width="2.5"/><rect x="6" y="25" width="28" height="5" fill="currentColor"/><circle cx="13" cy="23" r="2.2" fill="#B8892A"/><circle cx="19" cy="23" r="2.2" fill="#3A7132"/><circle cx="25" cy="23" r="2.2" fill="#B8892A"/></svg>',
+        mauer:'<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 34 V16 H9 V11 H14 V16 H18 V11 H22 V16 H26 V11 H31 V16 H36 V34Z" fill="currentColor"/><path d="M16 34 V27 a4 4 0 0 1 8 0 V34Z" fill="#F6EFDD"/></svg>',
+        gericht:'<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6 V33 M12 34 H28 M8 11 H32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M8 11 L3 23 H13Z M32 11 L27 23 H37Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 23 a5 3 0 0 0 10 0Z M27 23 a5 3 0 0 0 10 0Z" fill="currentColor"/></svg>',
+        rat:'<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="12" r="5" fill="currentColor"/><circle cx="9" cy="16" r="4" fill="currentColor"/><circle cx="31" cy="16" r="4" fill="currentColor"/><path d="M12 34 C12 24 16 20 20 20 C24 20 28 24 28 34Z M2 34 C2 26 5 23 9 23 C11 23 12 24 13 25 C11 28 11 31 11 34Z M38 34 C38 26 35 23 31 23 C29 23 28 24 27 25 C29 28 29 31 29 34Z" fill="currentColor"/></svg>'};
+      const R=[['markt','einen Markt abhalten','[[Marktrecht]]'],['mauer','eine Stadtmauer bauen','Schutz vor Feinden'],['gericht','eigene Gerichte haben','eigene Gesetze und Richter'],['rat','sich selbst verwalten','mit einem [[Rat]] und einem Bürgermeister']];
+      return `<figure class="fig"><div class="rights">${R.map(r=>`<div class="right">${icon[r[0]]}<div><b>${r[1]}</b><small>${md(r[2])}</small></div></div>`).join('')}</div><figcaption>Das Stadtrecht erlaubte einer Stadt vier wichtige Dinge.</figcaption></figure>`; }
+    case 'stadtvolk': return `<figure class="fig"><div class="pyr"><div class="pyr-row" style="--w:42%"><div class="tier t-patr"><b>Patrizier</b><small>reiche Kaufleute, im Rat</small></div></div><div class="pyr-row" style="--w:72%"><div class="tier t-hand"><b>Handwerker</b><small>Bäcker, Schmiede, Schuster</small></div></div><div class="pyr-row" style="--w:100%"><div class="tier t-unter"><b>Unterschicht</b><small>Mägde, Knechte, Tagelöhner, Bettler</small></div></div></div><figcaption>Die Menschen in der Stadt</figcaption></figure>`;
+  }
+  return '';
+}
+
+/* =========================================================
+   ZUSTAND
+   ========================================================= */
+const SIDS = ['pfalz','burg','dorf','stadt'];
+const ST = {}; STATIONS.forEach(s=>ST[s.id]=s); ST.finale = FINALE;
+const KEY = 'reise-ins-mittelalter-v1';
+const fresh = () => ({v:1, screen:'start', level:0, stations:{}, fin:null, name:'', big:false, run:null});
+function load(){ try{ const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(s && s.v===1) return s; }catch(e){} return null; }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+let S = load() || fresh();
+let ui = {ov:null, term:null, burgSel:null, dfYear:0, confirmReset:false, glq:'', pop:null, scrollTop:false, scrollFb:false, stamp:false, speaking:null};
+let SPEECH = [];
+const canSpeak = typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined';
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md = s => esc(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (m,d,k) => `<button type="button" class="term" data-a="term" data-t="${k||d}">${d}</button>`);
+const plain = s => String(s).replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, '$1').replace(/­/g,'');
+function shuffle(a){ a=[...a]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function sp(text, label='Vorlesen'){ if(!canSpeak) return ''; const i = SPEECH.push(plain(text))-1; return `<button type="button" class="speak" data-a="speak" data-i="${i}">${IC.speaker}<span>${label}</span></button>`; }
+
+const totalPf = () => SIDS.reduce((a,id)=>a+(S.stations[id]?.taler||0),0) + (S.fin?.taler||0);
+const sealsCount = () => SIDS.filter(id=>S.stations[id]?.done).length;
+const unlocked = i => i===0 || !!S.stations[SIDS[i-1]]?.done;
+const finUnlocked = () => sealsCount()===4;
+const lvOk = x => (x||1) <= S.level;
+const curTask = () => ST[S.run.sid].tasks[S.run.list[S.run.ti]];
+const pf = n => `${n} ${n===1?'Pfennig':'Pfennige'}`;
+
+function model(t){
+  const L = S.level;
+  if(t.type==='match'){ const pairs=t.pairs.slice(0,t.n[L-1]); return {targets:pairs.map((p,i)=>({id:'t'+i,label:p[0],cap:1})), chips:pairs.map((p,i)=>({id:'c'+i,label:p[1],target:'t'+i}))}; }
+  if(t.type==='sort'){ const items=t.items.filter(x=>lvOk(x[2])); return {targets:t.buckets.map(b=>({id:b[0],label:b[1],sub:b[2],cap:99})), chips:items.map((x,i)=>({id:'c'+i,label:x[0],target:x[1]}))}; }
+  if(t.type==='gap'){ const parts=t.text.split(/\{([^}]+)\}/); const words=[]; for(let i=1;i<parts.length;i+=2) words.push(parts[i]); return {parts, targets:words.map((w,i)=>({id:'g'+i,label:'Lücke '+(i+1),cap:1})), chips:[...words.map((w,i)=>({id:'c'+i,label:w,target:'g'+i})), ...(t.extra[L-1]||[]).map((w,i)=>({id:'d'+i,label:w,target:null}))]}; }
+  if(t.type==='order'){ const items=t.items.filter(x=>lvOk(x.lv)); return {targets:items.map((x,i)=>({id:'p'+i,label:'Platz '+(i+1),cap:1})), chips:items.map((x,i)=>({id:'c'+i,label:(L===1&&x.t1)?x.t1:x.t,target:'p'+i}))}; }
+  return null;
+}
+function initCur(t){
+  const c = {solved:false, revealed:false, coins:0, checks:0, msg:null};
+  if(t.type==='mc'){ const n=Math.min(S.level===1?3:4, t.o.length); c.order=shuffle([...Array(n).keys()]); c.wrong=[]; }
+  else if(t.type==='tf'){ c.items=t.items.map((x,i)=>i).filter(i=>lvOk(t.items[i][2])); c.ans={}; c.lock={}; c.bad={}; }
+  else if(t.type==='hot'){ c.targets=t.targets.filter(x=>lvOk(x[1])).map(x=>x[0]); c.step=0; c.found=[]; c.wrongs=0; c.here=0; c.show=false; }
+  else if(t.type==='grid'){ c.cells={}; c.lock={}; c.bad={}; }
+  else { const m=model(t); let ord=m.chips.map(ch=>ch.id); const id0=ord.join(); let tries=0; do { ord=shuffle(m.chips.map(ch=>ch.id)); tries++; } while(ord.join()===id0 && ord.length>1 && tries<12); c.order=ord; c.place={}; c.lock={}; c.bad={}; c.sel=null; c.selT=null; }
+  return c;
+}
+function startRun(sid){
+  const st = ST[sid];
+  S.run = {sid, level:S.level, phase:'read', card:0, list:st.tasks.map((t,i)=>i).filter(i=>lvOk(st.tasks[i].lv)), ti:0, coins:[], cur:null};
+  S.screen = 'run';
+}
+const coinsByChecks = n => n<=1 ? 10 : n===2 ? 5 : 2;
+function solve(coins){ const c=S.run.cur; c.solved=true; c.coins=coins; c.msg=null; S.run.coins[S.run.ti]=coins; ui.pop=coins; ui.scrollFb=true; }
+function finishRun(){
+  const r = S.run; const sum = r.coins.reduce((a,b)=>a+(b||0),0);
+  const first = r.coins.filter(x=>x===10).length; const ratio = first / r.list.length;
+  const starsN = ratio>=.8 ? 3 : ratio>=.5 ? 2 : 1;
+  if(r.sid==='finale'){
+    const prev = S.fin||{}; S.fin = {done:true, taler:Math.max(prev.taler||0,sum), stars:Math.max(prev.stars||0,starsN)};
+    S.run = null; S.screen = 'urkunde'; ui.stamp = true;
+  } else {
+    const prev = S.stations[r.sid]||{};
+    S.stations[r.sid] = {done:true, taler:Math.max(prev.taler||0,sum), stars:Math.max(prev.stars||0,starsN)};
+    r.phase = 'done'; r.result = {sum, stars:starsN, better: prev.done && sum>(prev.taler||0), replay: !!prev.done};
+    ui.stamp = true;
+  }
+}
+function hintText(){ const t=curTask(), c=S.run.cur; if(t.type==='hot') return PARTS[c.targets[Math.min(c.step,c.targets.length-1)]].hint; return t.h; }
+
+/* =========================================================
+   DARSTELLUNG
+   ========================================================= */
+function renderBar(){
+  document.getElementById('bar').innerHTML = `<div class="bar-in">
+    <button type="button" class="brand" data-a="home" data-k="home" aria-label="Zur Karte">${IC.crown}<span class="full">Reise ins Mittelalter</span></button>
+    <div class="stats"><span class="stat" title="Pfennige">${IC.coin}<b>${totalPf()}</b><span class="sr">Pfennige</span></span><span class="stat" title="Siegel">${seal('finale','').replace('<svg ','<svg width="24" height="24" ')}<b>${sealsCount()}/4</b><span class="sr">Siegel</span></span></div>
+    <div class="tools">
+      <button type="button" class="ibtn" data-a="ov" data-o="glossar" data-k="t-gl" aria-label="Wörterbuch">${IC.book}<span class="lbl">Wörterbuch</span></button>
+      <button type="button" class="ibtn" data-a="ov" data-o="merk" data-k="t-mk" aria-label="Merkheft">${IC.scroll}<span class="lbl">Merkheft</span></button>
+      <button type="button" class="ibtn" data-a="ov" data-o="menu" data-k="t-mn" aria-label="Menü">${IC.menu}<span class="lbl">Menü</span></button>
+    </div></div>`;
+}
+
+function renderStart(){
+  const has = S.level && (sealsCount()>0 || S.run);
+  return `<section class="sheet">
+    <div class="start-hero"><div class="kicker">Ein Lernspiel für Klasse 7</div><h1 class="title">Reise ins <em>Mittelalter</em></h1></div>
+    <div class="guide"><div class="av">${avatar('finale')}</div><div class="bubble"><b>Der König</b><p>Sei willkommen! Ich habe einen Auftrag für dich.</p></div></div>
+    <div class="prose">
+      <p class="initial">Wir schreiben das Jahr 1200. Du machst eine Zeitreise ins Mittelalter. Der König gibt dir einen Auftrag: Erkunde mein Reich!</p>
+      <p>Besuche vier Orte: die Königspfalz, eine Burg, ein Dorf und eine Stadt. An jedem Ort liest du kurze Texte und löst Aufgaben. Für richtige Antworten bekommst du [[Pfennige|Pfennig]]. Für jeden Ort bekommst du ein Siegel.</p>
+      <p>Mit vier Siegeln darfst du zur Prüfung beim König. Am Ende wartet deine Urkunde.</p>
+    </div>
+    <h2 class="h-sm">Wähle deine Stufe</h2>
+    <div class="levels" role="radiogroup" aria-label="Stufe">${[1,2,3].map(l=>`<button type="button" role="radio" aria-checked="${S.level===l}" class="lvl ${S.level===l?'on':''}" data-a="lvl" data-l="${l}" data-k="lvl-${l}">${stars(l)}<b>${LV[l].name}</b><span class="d">${LV[l].desc}</span></button>`).join('')}</div>
+    <div class="foot"><button type="button" class="btn gold big" data-a="begin" data-k="begin" ${S.level?'':'disabled'}>${has?'Weiterspielen':'Reise beginnen'} ${IC.arrowR}</button><span class="small">Du kannst allein oder zu zweit spielen.</span></div>
+    <button type="button" class="linkbtn" data-a="ov" data-o="teacher" data-k="teach">Hinweise für Lehrkräfte</button>
+  </section>`.replace('[[Pfennige|Pfennig]]', '<button type="button" class="term" data-a="term" data-t="Pfennig">Pfennige</button>');
+}
+
+function renderMap(){
+  const n = sealsCount();
+  const nextId = SIDS.find((id,i)=>unlocked(i) && !S.stations[id]?.done);
+  const intro = S.fin?.done ? 'Du hast die Reise geschafft! Deine Urkunde wartet auf dich.'
+    : n===4 ? 'Du hast alle 4 Siegel! Jetzt wartet die Prüfung beim König.'
+    : n===0 ? 'Beginne bei Ort 1, der Königspfalz. Tippe auf den Ort.'
+    : `Du hast ${n} von 4 Siegeln. Weiter geht es zu Ort ${ST[nextId].nr}: ${ST[nextId].name}.`;
+  const card = (id,i) => { const st=ST[id]; const open=unlocked(i); const d=S.stations[id]; const status = d?.done ? `<span class="st-ok">${IC.check} geschafft</span>${stars(d.stars)}<span>${pf(d.taler)}</span>` : open ? `<span class="st-next">${IC.arrowR} ${S.run&&S.run.sid===id&&S.run.phase!=='done'?'weiterspielen':'jetzt spielen'}</span>` : `<span class="st-lock">${IC.lock} erst Ort ${st.nr-1} schaffen</span>`;
+    return `<button type="button" class="stc ${open?'':'locked'}" ${open?`data-a="go" data-s="${id}"`:'aria-disabled="true"'} data-k="stc-${id}">${d?.done?seal(id,'').replace('<svg ','<svg width="50" height="50" '):shield(st.nr, st.col)}<span><span class="nm">${st.name}</span><br><span class="tp">${st.thema}</span><span class="status">${status}</span></span></button>`; };
+  const fu = finUnlocked();
+  const fin = `<button type="button" class="stc fin ${fu?'':'locked'}" ${fu?'data-a="go" data-s="finale"':'aria-disabled="true"'} data-k="stc-finale">${IC.crown.replace('width="34" height="34"','width="50" height="50"')}<span><span class="nm">Prüfung beim König</span><br><span class="tp">Rätsel: Wer bin ich? Danach bekommst du deine Urkunde.</span><span class="status">${S.fin?.done?`<span class="st-ok">${IC.check} bestanden</span>${stars(S.fin.stars)}`:fu?`<span class="st-next">${IC.arrowR} jetzt zur Prüfung</span>`:`<span class="st-lock">${IC.lock} erst alle 4 Siegel sammeln</span>`}</span></span></button>`;
+  return `<section class="sheet">
+    <div class="map-head"><span class="eyebrow">Stufe: ${LV[S.level].name}</span><h2>Das Reich im Jahr 1200</h2><p>${intro}</p></div>
+    <div class="mapbox">${mapSVG()}</div>
+    ${S.fin?.done?`<div class="foot"><button type="button" class="btn gold" data-a="urkunde" data-k="urk">${IC.scroll} Meine Urkunde ansehen</button></div>`:''}
+  </section>
+  <section class="stlist" aria-label="Alle Orte">${SIDS.map(card).join('')}${fin}</section>`;
+}
+
+function band(st){
+  const r=S.run; const sum=r.coins.reduce((a,b)=>a+(b||0),0); const idx={read:0,task:1,done:2}[r.phase];
+  const labels = ['Lesen', st.id==='finale'?'Rätsel':'Aufgaben', st.id==='finale'?'Urkunde':'Siegel'];
+  const prog = r.phase==='task' ? `<div class="prog" aria-label="Fortschritt"><span class="prog-l">${st.id==='finale'?'Rätsel':'Aufgaben'}:</span>${r.list.map((x,i)=>{ const cv=r.coins[i]; const cls = cv!=null ? 'c'+cv : i===r.ti ? 'cur' : ''; return `<i class="${cls}" title="${cv!=null?pf(cv):''}">${cv!=null?cv:i+1}</i>`; }).join('')}</div>` : '';
+  return `<div class="band" style="--st:${st.col}"><div class="band-in">${st.id==='finale'?IC.crown.replace('width="34" height="34"','width="46" height="46"'):shield(st.nr, st.col, true)}<div class="band-t"><div class="eyebrow light">${st.id==='finale'?'Finale':'Ort '+st.nr+' von 4'}</div><h1>${st.name}</h1><div class="band-sub">${st.thema}</div></div><div class="band-coins">${IC.coin}<b>${sum}</b><span class="sr">Pfennige an diesem Ort</span>${ui.pop!=null && ui.pop>0?`<span class="pop" aria-hidden="true">+${ui.pop}</span>`:''}</div></div>
+  <ol class="steps">${labels.map((l,i)=>`<li class="${i<idx?'done':i===idx?'now':''}">${l}</li>`).join('')}</ol>
+  ${prog?`<div style="padding:0 18px 14px">${prog}</div>`:''}</div>`;
+}
+
+function renderRun(){
+  const r=S.run, st=ST[r.sid];
+  let html = band(st);
+  if(r.phase==='read'){
+    const card = st.cards[r.card], n = st.cards.length;
+    const paras = card.p.filter(p=>lvOk(p[1]));
+    const box = card.box && lvOk(card.box[1]) ? card.box[0] : null;
+    const speech = card.title + '. ' + paras.map(p=>plain(p[0])).join(' ') + (box ? ' Wusstest du? ' + plain(box) : '');
+    if(r.card===0) html += `<div class="guide-wrap"><div class="guide"><div class="av">${avatar(st.id)}</div><div class="bubble"><b>${st.guide.name}</b><p>${esc(st.guide.text)}</p>${sp(st.guide.name+'. '+st.guide.text)}</div></div></div>`;
+    html += `<article class="sheet"><div class="card-head"><span class="eyebrow">Infokarte ${r.card+1} von ${n}</span>${sp(speech)}</div><h2>${esc(card.title)}</h2><div class="prose">${paras.map((p,i)=>`<p class="${i===0?'initial':''}">${md(p[0])}</p>`).join('')}</div>${card.fig?fig(card.fig):''}${box?`<aside class="wusst"><div class="wusst-h">Wusstest du?</div><p>${md(box)}</p></aside>`:''}</article>`;
+    html += `<nav class="cardnav" aria-label="Infokarten"><button type="button" class="btn ghost" style="background:var(--vellum)" data-a="card" data-d="-1" data-k="prev" ${r.card===0?'disabled':''}>${IC.arrowL} Zurück</button><div class="dots" aria-hidden="true">${st.cards.map((c,i)=>`<i class="${i===r.card?'on':''}"></i>`).join('')}</div>${r.card<n-1?`<button type="button" class="btn primary" data-a="card" data-d="1" data-k="nextcard">Weiter ${IC.arrowR}</button>`:`<button type="button" class="btn gold" data-a="toTasks" data-k="totasks">${st.id==='finale'?'Zu den Rätseln':'Zu den Aufgaben'} ${IC.arrowR}</button>`}</nav>`;
+  } else if(r.phase==='task'){
+    html += renderTask(st);
+  } else {
+    html += renderDone(st);
+  }
+  return html;
+}
+
+function chipBtn(ch, c){
+  const st = c.lock[ch.id] ? 'ok' : c.bad[ch.id] ? 'bad' : '';
+  return `<button type="button" class="chip ${st} ${c.sel===ch.id?'sel':''}" data-a="chip" data-id="${ch.id}" data-k="chip-${ch.id}" aria-pressed="${c.sel===ch.id}" ${c.lock[ch.id]?'aria-disabled="true"':''}>${st==='ok'?IC.check:st==='bad'?IC.cross:''}<span>${esc(ch.label)}</span></button>`;
+}
+
+function renderTask(st){
+  const r=S.run, t=curTask(), c=r.cur, L=S.level;
+  let body='', ready=true, needsCheck=false, canReveal=false, qSpeech=t.q;
+  if(t.type==='mc'){
+    body = `<div class="opts">${c.order.map(i=>{ const ok=c.solved&&i===0, bad=c.wrong.includes(i); return `<button type="button" class="opt ${ok?'ok':bad?'bad':''}" data-a="opt" data-i="${i}" data-k="opt-${i}" ${c.solved||bad?'disabled':''}>${ok?IC.check:bad?IC.cross:''}<span>${esc(t.o[i])}</span></button>`; }).join('')}</div>`;
+    qSpeech = t.q + ' ' + c.order.map(i=>t.o[i]).join('. ') + '.';
+  }
+  else if(t.type==='tf'){
+    needsCheck=true; canReveal=c.checks>=2; ready=c.items.every(i=>c.lock[i]||c.ans[i]!==undefined);
+    body = `<div class="tf">${c.items.map(i=>{ const [txt,truth]=t.items[i]; const lock=c.lock[i], bad=c.bad[i]; const v = lock ? truth : c.ans[i]; const s = lock?'ok':bad?'bad':''; return `<div class="tf-row ${s}"><p>${s==='ok'?IC.check:s==='bad'?IC.cross:''}<span>${esc(txt)}</span></p><div class="tf-btns" role="group" aria-label="Antwort"><button type="button" class="tfb ${v===true?'on':''}" data-a="tf" data-i="${i}" data-v="1" data-k="tf-${i}-1" aria-pressed="${v===true}" ${lock||c.solved?'disabled':''}>stimmt</button><button type="button" class="tfb ${v===false?'on':''}" data-a="tf" data-i="${i}" data-v="0" data-k="tf-${i}-0" aria-pressed="${v===false}" ${lock||c.solved?'disabled':''}>stimmt nicht</button></div></div>`; }).join('')}</div>`;
+    qSpeech = t.q + ' ' + c.items.map(i=>t.items[i][0]).join(' ');
+  }
+  else if(t.type==='hot'){
+    const tgt = c.targets[Math.min(c.step,c.targets.length-1)];
+    canReveal = false;
+    body = (c.solved ? '' : `<div class="hot-find"><span class="lbl">Tippe auf</span><b>${PARTS[tgt].akk}</b><span class="cnt">Gefunden: ${c.found.length} von ${c.targets.length}</span></div>`)
+      + `<div class="castlebox">${castle('task')}</div>`
+      + (c.msg ? `<p class="hot-msg ${c.msg.k}" aria-live="polite">${c.msg.k==='ok'?IC.check:c.msg.k==='bad'?IC.cross:IC.info}<span>${esc(c.msg.t)}</span></p>` : '');
+    qSpeech = t.q + ' Tippe auf ' + PARTS[tgt].akk + '.';
+  }
+  else if(t.type==='grid'){
+    needsCheck=true; canReveal=c.checks>=2; const years = L===1?2:3;
+    const keys=[]; for(let f=0;f<3;f++) for(let y=1;y<years;y++) keys.push(f+'-'+y);
+    ready = keys.every(k=>c.cells[k]);
+    body = `<div class="gridwrap"><table class="grid"><thead><tr><th></th>${[...Array(years)].map((_,y)=>`<th scope="col">Jahr ${y+1}</th>`).join('')}</tr></thead><tbody>${[0,1,2].map(f=>`<tr><th scope="row">Feld ${'ABC'[f]}</th>${[...Array(years)].map((_,y)=>{ if(y===0) return `<td><span class="crop ${SOL[f][0]}">${CROPS[SOL[f][0]]}</span></td>`; const k=f+'-'+y; const v=c.cells[k]||''; const s=c.lock[k]?'ok':c.bad[k]?'bad':''; return `<td><button type="button" class="cell crop ${v} ${s}" data-a="cell" data-c="${k}" data-k="cell-${k}" aria-label="Feld ${'ABC'[f]}, Jahr ${y+1}: ${v?CROPL[v]:'noch leer'}" ${c.lock[k]||c.solved?'disabled':''}>${v?CROPS[v]:'?'}</button></td>`; }).join('')}</tr>`).join('')}</tbody></table></div>`;
+  }
+  else {
+    needsCheck=true; canReveal=c.checks>=2;
+    const m=model(t);
+    const placedIn = tid => m.chips.filter(ch=>c.place[ch.id]===tid);
+    const pool = c.order.map(id=>m.chips.find(ch=>ch.id===id)).filter(ch=>!c.place[ch.id]);
+    const poolHtml = `<div class="pool-wrap"><div class="pool-label">Kartenstapel</div><div class="pool">${pool.length?pool.map(ch=>chipBtn(ch,c)).join(''):'<span class="pool-empty">Alle Karten sind verteilt.</span>'}</div></div>`;
+    const armed = c.sel ? 'armed' : '';
+    const slot = (tg, inner, cls='', tag='div') => `<${tag} class="slot ${cls} ${armed} ${c.selT===tg.id?'selT':''}" ${t.type!=='order'?`data-a="target" data-id="${tg.id}" role="button" tabindex="0"`:''} data-k="tg-${tg.id}" aria-label="${esc(tg.label||'')}">${inner}</${tag}>`;
+    if(t.type==='sort') ready = m.chips.every(ch=>c.place[ch.id]);
+    else ready = m.targets.every(tg=>placedIn(tg.id).length>0);
+    if(t.type==='match') body = poolHtml + `<div class="match">${m.targets.map(tg=>`<div class="mrow"><div class="mterm">${esc(tg.label)}</div>${slot(tg, placedIn(tg.id).map(ch=>chipBtn(ch,c)).join('')||'<span class="ph">Karte hier ablegen</span>')}</div>`).join('')}</div>`;
+    if(t.type==='sort') body = poolHtml + `<div class="buckets" style="--bn:${m.targets.length}">${m.targets.map(tg=>slot(tg, `<div class="b-head"><b>${esc(tg.label)}</b>${tg.sub?`<small>${esc(tg.sub)}</small>`:''}</div><div class="b-body">${placedIn(tg.id).map(ch=>chipBtn(ch,c)).join('')}</div>`, 'bucket')).join('')}</div>`;
+    if(t.type==='gap'){ let h=''; m.parts.forEach((p,i)=>{ if(i%2===0) h+=esc(p); else { const tg=m.targets[(i-1)/2]; const ch=placedIn(tg.id)[0]; h+=slot(tg, ch?chipBtn(ch,c):'<span class="ph">…</span>', 'gap', 'span'); } }); body = poolHtml + `<p class="gaptext">${h}</p>`; qSpeech = t.q + ' ' + m.parts.map((p,i)=>i%2?' Lücke. ':p).join(''); }
+    if(t.type==='order') body = poolHtml + `<ol class="order">${m.targets.map(tg=>`<li>${slot(tg, placedIn(tg.id).map(ch=>chipBtn(ch,c)).join('')||'<span class="ph">…</span>', 'o')}</li>`).join('')}</ol>`;
+  }
+  const last = r.ti===r.list.length-1;
+  let foot = '';
+  if(!c.solved){
+    foot += `<button type="button" class="btn ghost" data-a="hint" data-k="hint">${IC.help} Hilfekarte</button>`;
+    if(t.type==='hot' && c.here>=2 && !c.show) foot += `<button type="button" class="btn ghost" data-a="showpart" data-k="showpart">Zeig mir, wo es ist</button>`;
+    if(canReveal) foot += `<button type="button" class="btn ghost" data-a="reveal" data-k="reveal">Lösung zeigen</button>`;
+    if(needsCheck) foot += `<button type="button" class="btn primary push" data-a="check" data-k="check" ${ready?'':'disabled'}>${IC.check} Prüfen</button>`;
+  }
+  let fb='';
+  if(c.solved){
+    const title = c.revealed ? 'Hier ist die Lösung.' : c.coins===10 ? ['Richtig!','Sehr gut!','Stark!','Super gemacht!'][r.ti%4] : c.coins===5 ? 'Richtig – im zweiten Versuch!' : 'Geschafft!';
+    fb = `<div class="fb ok" aria-live="polite"><div class="fb-t">${IC.check}<span>${title}</span><span class="fb-coins">${IC.coin}+${c.coins}</span></div><p>${esc(t.e)}</p><div class="foot"><button type="button" class="btn primary" data-a="next" data-k="next">${last?(st.id==='finale'?'Zur Urkunde':'Station abschließen'):'Nächste Aufgabe'} ${IC.arrowR}</button></div></div>`;
+  } else if(c.msg && t.type!=='hot'){
+    fb = `<div class="fb bad" aria-live="polite"><div class="fb-t">${IC.cross}<span>${esc(c.msg.t)}</span></div></div>`;
+  }
+  return `<article class="sheet ${t.riddle?'riddle':''}">
+    <div class="card-head"><span class="eyebrow">${st.id==='finale'?'Rätsel':'Aufgabe'} ${r.ti+1} von ${r.list.length}</span><span class="tag">${TYPE[t.type]}</span>${t.denk?'<span class="tag denk">Denkfrage</span>':''}${sp(qSpeech)}</div>
+    <h2 class="q">${esc(t.q)}</h2>
+    ${c.solved?'':`<p class="how">${IC.info}<span>${HOW[t.type]}</span></p>`}
+    ${body}
+    ${foot?`<div class="foot">${foot}</div>`:''}
+    ${fb}
+  </article>`;
+}
+
+function renderDone(st){
+  const r=S.run, res=r.result; const i=SIDS.indexOf(st.id); const nextId=SIDS[i+1];
+  const nextBtn = nextId && !S.stations[nextId]?.done ? `<button type="button" class="btn gold" data-a="go" data-s="${nextId}" data-k="gonext">Weiter zu Ort ${ST[nextId].nr}: ${ST[nextId].name} ${IC.arrowR}</button>` : (finUnlocked() && !S.fin?.done ? `<button type="button" class="btn gold" data-a="go" data-s="finale" data-k="gofin">Zur Prüfung beim König ${IC.arrowR}</button>` : '');
+  const note = res.replay ? (res.better ? ' Das ist dein neuer Bestwert!' : ' Dein Bestwert von vorher bleibt gespeichert.') : '';
+  return `<article class="sheet">
+    <div class="done-top"><div class="bigseal ${ui.stamp?'stamp':''}">${seal(st.id,'')}</div><div style="display:grid;gap:6px;min-width:0;flex:1 1 14em"><span class="eyebrow">Ort ${st.nr} geschafft</span><h2>Du bekommst das Siegel!</h2>${stars(res.stars)}<p>An diesem Ort hast du <b>${pf(res.sum)}</b> gesammelt.${note}</p></div></div>
+    <section class="merk"><div class="merk-h"><span>Merksatz</span>${sp(st.merk)}</div><p>${esc(st.merk)}</p><p class="merk-note">Schreibe den Merksatz in dein Heft. Du findest ihn auch im Merkheft.</p></section>
+    <div class="foot"><button type="button" class="btn primary" data-a="toMap" data-k="tomap">${IC.arrowL} Zurück zur Karte</button>${nextBtn}</div>
+  </article>`;
+}
+
+function renderUrkunde(){
+  const name = (S.name||'').trim();
+  const date = new Date().toLocaleDateString('de-DE');
+  return `<section class="urk"><div class="urk-in">
+      <span class="eyebrow">Das Königreich bezeugt</span>
+      <div class="urk-t">Urkunde</div>
+      <p>Hiermit bestätigt der König mit seinem Siegel:</p>
+      <div class="urk-name" id="urk-name-out">${name?esc(name):'&nbsp;'}</div>
+      <p>hat die <b>Reise ins Mittelalter</b> bestanden. Besucht wurden die Königspfalz, die Burg, das Dorf und die Stadt.</p>
+      <div class="urk-meta"><span>Stufe: ${LV[S.level]?.name||''}</span><span>${IC.coin.replace('<svg ','<svg style="display:inline;vertical-align:-6px" ')} ${pf(totalPf())}</span></div>
+      <div class="urk-seals">${SIDS.map(id=>seal(id,'',!!S.stations[id]?.done)).join('')}<span class="${ui.stamp?'stamp':''}">${seal('finale','royal')}</span></div>
+      <p class="urk-date">Gegeben in der Königspfalz im Jahr 1200 – und am ${date}.</p>
+    </div></section>
+    <section class="sheet">
+      <div class="namefield"><label for="urk-name">Dein Name für die Urkunde</label><input id="urk-name" data-k="urk-name" maxlength="40" autocomplete="off" value="${esc(S.name||'')}" placeholder="Vorname"></div>
+      <p class="small">Der Name bleibt nur auf diesem Gerät. Mach ein Foto oder einen Screenshot von deiner Urkunde.</p>
+      <div class="foot"><button type="button" class="btn primary" data-a="toMap" data-k="tomap2">${IC.arrowL} Zur Karte</button><button type="button" class="btn ghost" style="background:var(--vellum)" data-a="ov" data-o="merk" data-k="urk-merk">${IC.scroll} Alle Merksätze</button></div>
+    </section>`;
+}
+
+/* Einblendungen */
+function glossList(){
+  const q=(ui.glq||'').trim().toLowerCase();
+  const keys=Object.keys(GL).filter(k=>!q || k.toLowerCase().includes(q) || GL[k][0].toLowerCase().includes(q)).sort((a,b)=>a.localeCompare(b,'de'));
+  if(!keys.length) return '<p class="small">Kein Wort gefunden. Versuche ein anderes Wort.</p>';
+  return `<dl class="glist">${keys.map(k=>`<div class="gitem"><dt><b>${k}</b><span class="stag" style="background:${ST[GL[k][1]].col}">${ST[GL[k][1]].name}</span></dt><dd>${esc(GL[k][0])}</dd></div>`).join('')}</dl>`;
+}
+function renderOverlay(){
+  const el=document.getElementById('ov');
+  if(!ui.ov){ el.innerHTML=''; return; }
+  let inner='';
+  const head = (title, pre='') => `<div class="ov-head">${pre}<h2>${title}</h2><button type="button" class="x" data-a="close" data-k="ov-x" aria-label="Schließen">×</button></div>`;
+  if(ui.ov==='hint' && S.run && S.run.phase==='task'){
+    const h=hintText();
+    inner = head('Hilfekarte','<span class="hint-seal" aria-hidden="true">?</span>') + `<p class="hint-text">${md(h)}</p><div class="foot">${sp(h)}<button type="button" class="btn primary push" data-a="close" data-k="ov-ok">Alles klar</button></div>`;
+  } else if(ui.ov==='term' && GL[ui.term]){
+    const g=GL[ui.term];
+    inner = head(esc(ui.term)) + `<p class="hint-text">${esc(g[0])}</p><div class="foot">${sp(ui.term+'. '+g[0])}<button type="button" class="btn ghost" data-a="ov" data-o="glossar" data-k="ov-gl">${IC.book} Ganzes Wörterbuch</button><button type="button" class="btn primary push" data-a="close" data-k="ov-ok">Alles klar</button></div>`;
+  } else if(ui.ov==='glossar'){
+    inner = head('Wörterbuch') + `<label class="sr" for="glq">Wort suchen</label><input id="glq" class="gsearch" data-k="glq" type="search" placeholder="Wort suchen, z. B. Lehen" value="${esc(ui.glq)}" autocomplete="off"><div id="glres">${glossList()}</div>`;
+  } else if(ui.ov==='merk'){
+    inner = head('Mein Merkheft') + `<p class="small">Hier sammelst du die Merksätze. Du bekommst einen Merksatz, wenn du einen Ort geschafft hast.</p><div class="mlist">${SIDS.map(id=>{ const st=ST[id], d=S.stations[id]?.done; return `<div class="mitem ${d?'':'locked'}">${seal(id,'sl',!!d)}<div><b>${st.nr}. ${st.name}</b>${d?`<p>${esc(st.merk)}</p><div style="margin-top:8px">${sp(st.merk)}</div>`:'<p class="small">Noch nicht freigeschaltet. Schaffe zuerst diesen Ort.</p>'}</div></div>`; }).join('')}</div>`;
+  } else if(ui.ov==='menu'){
+    inner = head('Menü') + `<div class="menu">
+      <button type="button" class="btn ghost" data-a="big" data-k="m-big" aria-pressed="${!!S.big}">Große Schrift: ${S.big?'an':'aus'}</button>
+      <button type="button" class="btn ghost" data-a="level" data-k="m-lvl">Stufe wechseln (jetzt: ${S.level?LV[S.level].name:'–'})</button>
+      <button type="button" class="btn ghost" data-a="ov" data-o="teacher" data-k="m-t">Hinweise für Lehrkräfte</button>
+      ${ui.confirmReset?`<div class="confirm"><p><b>Wirklich alles löschen?</b> Alle Siegel, Pfennige und die Urkunde gehen verloren.</p><div class="foot"><button type="button" class="btn primary" style="background:var(--bad);border-color:var(--bad)" data-a="resetYes" data-k="m-yes">Ja, alles löschen</button><button type="button" class="btn ghost" data-a="resetNo" data-k="m-no">Abbrechen</button></div></div>`:`<button type="button" class="btn ghost" data-a="reset" data-k="m-reset">Neu beginnen (alles löschen)</button>`}
+    </div>`;
+  } else if(ui.ov==='teacher'){
+    inner = head('Hinweise für Lehrkräfte') + `<div class="tinfo">
+      <p><b>Einsatz:</b> Einstieg in das Thema Mittelalter, Klasse 7. Die Lernenden spielen einzeln oder zu zweit am Tablet oder PC. Vorwissen ist nicht nötig: Jede Station beginnt mit kurzen Infokarten.</p>
+      <p><b>Dauer:</b> ca. 45–60 Minuten für alle vier Orte und die Prüfung (Schätzwert, abhängig von Stufe und Lesetempo). Die Orte lassen sich auch auf zwei Stunden verteilen.</p>
+      <h3>Aufbau</h3>
+      <ul><li><b>1 Königspfalz:</b> Zeitstrahl, Ständeordnung, Lehnswesen</li><li><b>2 Burg:</b> Teile einer Burg, Leben auf der Burg, Ausbildung zum Ritter</li><li><b>3 Dorf:</b> Grundherrschaft, Dreifelderwirtschaft, Alltag</li><li><b>4 Stadt:</b> Entstehung, Stadtrecht, Bewohner, Zünfte</li><li><b>Finale:</b> „Wer bin ich?“-Rätsel und Urkunde</li></ul>
+      <p>Jeder Ort: Infokarten lesen → Aufgaben (Auswahl, Zuordnen, Sortieren, Lückentext, Reihenfolge, Stimmt das?, Suchbild, Felder planen) → Merksatz und Siegel. Die Orte werden nacheinander freigeschaltet.</p>
+      <h3>Drei Niveaustufen</h3>
+      <div class="twrap"><table><thead><tr><th>Stufe</th><th>Texte</th><th>Aufgaben</th></tr></thead><tbody>
+        <tr><td><b>Lehrling</b></td><td>Basistexte in einfacher Sprache</td><td>6 Aufgaben je Ort, 8 Rätsel im Finale; 3 Antwortoptionen, weniger Karten; Hilfekarte öffnet sich nach dem ersten Fehler automatisch</td></tr>
+        <tr><td><b>Geselle</b></td><td>zusätzliche Absätze</td><td>7 Aufgaben je Ort, 9 Rätsel; 4 Antwortoptionen, mehr Karten, ein Ablenker im Lückentext</td></tr>
+        <tr><td><b>Meister</b></td><td>alle Absätze, Fachbegriffe wie Kronvasall, Hörige, Zunftzwang</td><td>8 Aufgaben je Ort, 10 Rätsel; Denkfragen, mehrere Ablenker im Lückentext</td></tr>
+      </tbody></table></div>
+      <h3>Unterstützung für sprachschwächere Lernende</h3>
+      <ul><li>Kurze Sätze, rot markierte Fachbegriffe mit Erklärung zum Antippen</li><li>Wörterbuch mit allen Begriffen (oben in der Leiste)</li><li>Vorlesen-Knöpfe (nutzt die Sprachausgabe des Geräts, nicht überall verfügbar)</li><li>Hilfekarte bei jeder Aufgabe, „Große Schrift“ im Menü</li></ul>
+      <h3>Punkte</h3>
+      <p>Pfennige: 10 beim ersten Versuch, 5 beim zweiten, 2 danach, 0 bei „Lösung zeigen“. Sterne je Ort: 3 Sterne ab 80 % Aufgaben im ersten Versuch, 2 Sterne ab 50 %. Wiederholen ist möglich, es zählt der Bestwert.</p>
+      <h3>Sicherung</h3>
+      <p>Nach jedem Ort erscheint ein Merksatz fürs Heft. Das Merkheft sammelt alle Merksätze. Am Ende gibt es eine Urkunde (Foto oder Screenshot).</p>
+      <h3>Datenschutz</h3>
+      <p>Keine Anmeldung. Fortschritt und der Name auf der Urkunde werden nur im Browser dieses Geräts gespeichert und nicht übertragen. Bei geteilten Geräten: Menü → „Neu beginnen“.</p>
+    </div>`;
+  } else { ui.ov=null; el.innerHTML=''; return; }
+  el.innerHTML = `<div class="ov-back" data-a="backdrop"><div class="ov-card" role="dialog" aria-modal="true">${inner}</div></div>`;
+}
+
+function render(){
+  SPEECH = [];
+  const active = document.activeElement; const k = active && active.getAttribute ? active.getAttribute('data-k') : null;
+  const ovWasOpen = !!document.querySelector('.ov-back');
+  document.documentElement.classList.toggle('big', !!S.big);
+  renderBar();
+  if(!S.level && S.screen!=='start') S.screen='start';
+  if(S.screen==='run' && (!S.run || S.run.level!==S.level)){ S.run=null; S.screen='map'; }
+  if(S.screen==='urkunde' && !S.fin?.done) S.screen='map';
+  const main = document.getElementById('main');
+  main.innerHTML = S.screen==='start' ? renderStart() : S.screen==='map' ? renderMap() : S.screen==='run' ? renderRun() : S.screen==='urkunde' ? renderUrkunde() : renderMap();
+  renderOverlay();
+  ui.pop = null; ui.stamp = false;
+  if(ui.scrollTop){ window.scrollTo(0,0); ui.scrollTop=false; ui.scrollFb=false; }
+  if(ui.scrollFb){ const f=document.querySelector('.fb.ok'); if(f) f.scrollIntoView({block:'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); ui.scrollFb=false; }
+  let target = null;
+  if(ui.ov && !ovWasOpen) target = document.querySelector('#ov [data-k]');
+  else if(k) target = document.querySelector(`[data-k="${CSS.escape(k)}"]`);
+  if(target && typeof target.focus==='function'){ try{ target.focus({preventScroll:true}); }catch(e){} }
+}
+function toTop(){ ui.scrollTop = true; }
+
+/* =========================================================
+   AKTIONEN
+   ========================================================= */
+function placeInto(cid, tid){
+  const c=S.run.cur, m=model(curTask()); const tg=m.targets.find(x=>x.id===tid); if(!tg) return;
+  if(tg.cap===1){ for(const [k,v] of Object.entries(c.place)){ if(v===tid){ if(c.lock[k]) return; delete c.place[k]; } } }
+  c.place[cid]=tid; delete c.bad[cid]; c.msg=null;
+}
+function afterWrong(msg){ const c=S.run.cur; c.msg={k:'bad', t:msg}; if(S.level===1 && !c.autoHint){ c.autoHint=true; ui.ov='hint'; } }
+
+const H = {
+  home(){ S.screen = S.level ? 'map' : 'start'; toTop(); },
+  lvl(el){ const l=+el.dataset.l; if(S.level!==l){ S.level=l; if(S.run && S.run.level!==l) S.run=null; } },
+  begin(){ if(!S.level) return 'skip'; S.screen='map'; toTop(); },
+  go(el){ const sid=el.dataset.s; if(sid==='finale'){ if(!finUnlocked()) return 'skip'; } else if(!unlocked(SIDS.indexOf(sid))) return 'skip';
+    ui.ov=null; if(S.run && S.run.sid===sid && S.run.phase!=='done' && S.run.level===S.level) S.screen='run'; else startRun(sid); ui.burgSel=null; ui.dfYear=0; toTop(); },
+  toMap(){ if(S.run && S.run.phase==='done') S.run=null; S.screen='map'; toTop(); },
+  urkunde(){ S.screen='urkunde'; toTop(); },
+  card(el){ const n=ST[S.run.sid].cards.length; S.run.card=Math.max(0,Math.min(n-1,S.run.card+(+el.dataset.d))); toTop(); },
+  toTasks(){ S.run.phase='task'; S.run.ti=0; S.run.coins=[]; S.run.cur=initCur(curTask()); toTop(); },
+  explore(el){ ui.burgSel=el.dataset.p; },
+  df(el){ ui.dfYear=+el.dataset.y; },
+  opt(el){ const c=S.run.cur; if(c.solved) return 'skip'; const i=+el.dataset.i;
+    if(i===0) solve(c.wrong.length===0?10:c.wrong.length===1?5:2);
+    else if(!c.wrong.includes(i)){ c.wrong.push(i); afterWrong('Leider falsch. Versuche es noch einmal.'); } },
+  tf(el){ const c=S.run.cur; const i=+el.dataset.i; if(c.solved||c.lock[i]) return 'skip'; c.ans[i]= el.dataset.v==='1'; delete c.bad[i]; c.msg=null; },
+  chip(el){ const c=S.run.cur, t=curTask(), m=model(t); const id=el.dataset.id; if(c.solved||c.lock[id]) return 'skip';
+    if(c.place[id]){ delete c.place[id]; c.sel=null; return; }
+    if(t.type==='order'){ const used=new Set(Object.values(c.place)); const tg=m.targets.find(x=>!used.has(x.id)); if(tg){ c.place[id]=tg.id; delete c.bad[id]; c.msg=null; } return; }
+    if(c.selT){ placeInto(id,c.selT); c.selT=null; c.sel=null; return; }
+    c.sel = c.sel===id ? null : id; },
+  target(el){ const c=S.run.cur; if(c.solved) return 'skip'; const tid=el.dataset.id;
+    if(c.sel){ placeInto(c.sel,tid); c.sel=null; return; }
+    c.selT = c.selT===tid ? null : tid; },
+  cell(el){ const c=S.run.cur; const k=el.dataset.c; if(c.solved||c.lock[k]) return 'skip'; const seq=['W','S','B']; const v=c.cells[k]; c.cells[k] = v ? seq[(seq.indexOf(v)+1)%3] : 'W'; delete c.bad[k]; c.msg=null; },
+  part(el){ const c=S.run.cur; if(c.solved) return 'skip'; const p=el.dataset.p; const target=c.targets[c.step];
+    if(p===target){ c.found.push(p); c.step++; c.here=0; c.show=false; if(c.step>=c.targets.length){ solve(c.wrongs===0?10:c.wrongs<=2?5:2); } else c.msg={k:'ok', t:`Richtig, das ist ${PARTS[p].nom}! Suche jetzt ${PARTS[c.targets[c.step]].akk}.`}; }
+    else if(c.found.includes(p)){ c.msg={k:'info', t:`Das ist ${PARTS[p].nom}. Diesen Teil hast du schon gefunden.`}; }
+    else { c.wrongs++; c.here++; const m=`Das ist ${PARTS[p].nom}. Gesucht ist ${PARTS[target].nom}.`; c.msg={k:'bad', t:m.charAt(0).toUpperCase()+m.slice(1)}; if(S.level===1 && !c.autoHint){ c.autoHint=true; ui.ov='hint'; } } },
+  showpart(){ S.run.cur.show=true; },
+  check(){ const t=curTask(), c=S.run.cur; if(c.solved) return 'skip'; c.checks++;
+    if(t.type==='tf'){ for(const i of c.items){ if(c.lock[i]) continue; if(c.ans[i]===t.items[i][1]) c.lock[i]=true; else { c.bad[i]=true; delete c.ans[i]; } }
+      if(c.items.every(i=>c.lock[i])) solve(coinsByChecks(c.checks)); else afterWrong('Noch nicht ganz. Die grünen Sätze stimmen schon. Überlege bei den roten Sätzen noch einmal.'); return; }
+    if(t.type==='grid'){ const years=S.level===1?2:3; let all=true; for(let f=0;f<3;f++) for(let y=1;y<years;y++){ const k=f+'-'+y; if(c.lock[k]) continue; if(c.cells[k]===SOL[f][y]) c.lock[k]=true; else { c.bad[k]=true; all=false; } }
+      if(all) solve(coinsByChecks(c.checks)); else afterWrong('Noch nicht ganz. Die rot umrandeten Felder stimmen nicht. Denk an die Reihe: Winter → Sommer → Brache → Winter.'); return; }
+    const m=model(t);
+    for(const ch of m.chips){ const p=c.place[ch.id]; if(!p || c.lock[ch.id]) continue; if(p===ch.target) c.lock[ch.id]=true; else { delete c.place[ch.id]; c.bad[ch.id]=true; } }
+    c.sel=null; c.selT=null;
+    if(m.chips.filter(ch=>ch.target).every(ch=>c.lock[ch.id])) solve(coinsByChecks(c.checks));
+    else afterWrong('Noch nicht ganz. Die falschen Karten liegen wieder im Stapel (rot markiert). Die grünen Karten stimmen schon.'); },
+  reveal(){ const t=curTask(), c=S.run.cur; if(c.solved) return 'skip';
+    if(t.type==='tf'){ c.items.forEach(i=>{ c.lock[i]=true; c.ans[i]=t.items[i][1]; }); }
+    else if(t.type==='grid'){ const years=S.level===1?2:3; for(let f=0;f<3;f++) for(let y=1;y<years;y++){ const k=f+'-'+y; c.cells[k]=SOL[f][y]; c.lock[k]=true; } }
+    else { const m=model(t); c.place={}; m.chips.forEach(ch=>{ if(ch.target){ c.place[ch.id]=ch.target; c.lock[ch.id]=true; } }); c.bad={}; }
+    c.revealed=true; solve(0); },
+  next(){ const r=S.run; r.ti++; if(r.ti>=r.list.length) finishRun(); else r.cur=initCur(curTask()); ui.ov=null; toTop(); },
+  hint(){ ui.ov='hint'; },
+  term(el){ ui.term=el.dataset.t; ui.ov='term'; },
+  ov(el){ ui.ov=el.dataset.o; ui.confirmReset=false; if(ui.ov==='glossar') ui.glq=''; },
+  close(){ ui.ov=null; },
+  backdrop(el,e){ if(e.target!==el) return 'skip'; ui.ov=null; },
+  speak(el){ doSpeak(+el.dataset.i); return 'skip'; },
+  big(){ S.big=!S.big; },
+  level(){ ui.ov=null; S.screen='start'; toTop(); },
+  reset(){ ui.confirmReset=true; },
+  resetNo(){ ui.confirmReset=false; },
+  resetYes(){ S=fresh(); ui.ov=null; ui.confirmReset=false; toTop(); }
+};
+
+function doSpeak(i){
+  if(!canSpeak) return;
+  try{
+    window.speechSynthesis.cancel();
+    if(ui.speaking===i){ ui.speaking=null; return; }
+    const u=new SpeechSynthesisUtterance(SPEECH[i]||''); u.lang='de-DE'; u.rate=.9;
+    const v=(window.speechSynthesis.getVoices()||[]).find(v=>v.lang && v.lang.toLowerCase().startsWith('de')); if(v) u.voice=v;
+    u.onend=()=>{ ui.speaking=null; };
+    ui.speaking=i; window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+document.addEventListener('click', e=>{
+  const el = e.target.closest('[data-a]'); if(!el) return;
+  if(el.disabled) return;
+  const fn = H[el.dataset.a]; if(!fn) return;
+  if(el.dataset.a!=='speak' && canSpeak){ try{ window.speechSynthesis.cancel(); ui.speaking=null; }catch(err){} }
+  const r = fn(el, e); if(r==='skip') return;
+  save(); render();
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && ui.ov){ ui.ov=null; render(); return; }
+  if((e.key==='Enter' || e.key===' ') && e.target && e.target.matches && e.target.matches('[role="button"][data-a]') && !(e.target instanceof HTMLButtonElement)){
+    e.preventDefault(); e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}));
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.id==='glq'){ ui.glq=e.target.value; const r=document.getElementById('glres'); if(r) r.innerHTML=glossList(); }
+  if(e.target.id==='urk-name'){ S.name=e.target.value.slice(0,40); save(); const o=document.getElementById('urk-name-out'); if(o) o.innerHTML = S.name.trim()?esc(S.name.trim()):'&nbsp;'; }
+});
+
+/* Start */
+function boot(data){ if(data && data.S && data.S.v===1){ S=data.S; } render(); }
+try{ window.claude?.hot?.snapshot?.(() => ({S})); }catch(e){}
+if(window.claude?.hot?.ready){ try{ window.claude.hot.ready(boot); }catch(e){ boot({}); } } else boot(window.claude?.hot?.data ?? {});
+</script>
+</body>
+</html>
